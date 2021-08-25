@@ -11,7 +11,7 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 500,
+        width: 445,
     },
     media: {
         height: 300,
@@ -35,9 +35,10 @@ export default function Collectible(props) {
                     <Button
                         value={_id}
                         variant='outlined'
+                        style={{textTransform:"none"}}
                         endIcon={<MonetizationOnIcon />}
                         onClick={onSell}
-                    >Sell
+                    >Liberate
                     </Button>
                 }
             />
@@ -68,7 +69,7 @@ export default function Collectible(props) {
                             style={{
                                 color: "#4285F4",
                                 borderRadius: 10,
-                                width: 100
+                                fontSize:12
                             }}
                             variant='outlined'
                             startIcon={<BuildIcon />}>
@@ -82,7 +83,7 @@ export default function Collectible(props) {
                             style={{
                                 color: "#DB4437",
                                 borderRadius: 10,
-                                width: 100
+                                fontSize:12
                             }}
                             variant='outlined'
                             startIcon={<SportsKabaddiIcon />}>
@@ -96,7 +97,7 @@ export default function Collectible(props) {
                             style={{
                                 color: "#F4B400",
                                 borderRadius: 10,
-                                width: 100
+                                fontSize:12
                             }}
                             variant='outlined'
                             startIcon={<FlashOnIcon />}>
@@ -110,7 +111,7 @@ export default function Collectible(props) {
                             style={{
                                 color: "#0F9D58",
                                 borderRadius: 10,
-                                width: 100
+                                fontSize:12
                             }}
                             variant='outlined'
                             startIcon={<LocalHospitalIcon />}>

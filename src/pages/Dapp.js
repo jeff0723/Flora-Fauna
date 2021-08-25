@@ -279,10 +279,11 @@ export default function Dapp() {
                 <Header checked={checked} toggleChecked={handleChecked} />
 
                 <div className={classes.appBarSpacer} />
+                <main style={{height:830}}>
                 <Box display='flex'
                     flexDirection='row'
                     style={{
-                        padding: 30, marginLeft: 100, width: '90%',
+                        padding: 30, marginLeft: 100, width: '90%'
                     }}
                 >
                     <Box>
@@ -303,6 +304,7 @@ export default function Dapp() {
                         <Recruit onRecruit={onRecruit} />
                     </Box>
                 </Box>
+                </main>
             </div>
         </>
 

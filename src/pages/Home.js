@@ -122,7 +122,7 @@ export default function Home() {
             </AppBar>
             <main>
                 <Toolbar />
-                <section className={classes.main} style={{ height: 830 }}>
+                <section className={classes.main} style={{ height: 830,marginBottom:50}}>
 
                     <Box display='flex' flexDirection='row'>
                         <Box className={classes.bodyLeft}>
