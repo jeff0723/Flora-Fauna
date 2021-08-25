@@ -102,7 +102,7 @@ export default function Home() {
                     <Container maxWidth="lg">
                         <Box display="flex" flexDirection="row" justifyContent="space-between" className={classes.header} >
                             <Box flexGrow={1}>
-                                <img src={Logo} className={classes.logo} />
+                                <img src={Logo} alt='logo' className={classes.logo} />
                             </Box>
                             <Box>
                                 <Button variant='contained'
@@ -138,7 +138,7 @@ export default function Home() {
                             </Button>
                         </Box>
                         <Box>
-                            <img src={Overlap} className={classes.overlap} />
+                            <img src={Overlap} alt='overlap' className={classes.overlap} />
 
                         </Box>
                     </Box>
@@ -149,26 +149,26 @@ export default function Home() {
                         <Typography variant='h2' className={classes.h2} style={{ textAlign: "center" }}>Create and sell your NFTs</Typography>
                         <Grid container justifyContent="center" spacing={3} style={{ marginTop: 50 }}>
                             <Grid item lg={3} style={{ textAlign: "center" }}>
-                                <img src={Wallet} className={classes.svg}></img>
+                                <img src={Wallet} alt='Wallet' className={classes.svg}></img>
                                 <Typography className={classes.p_title}>Set up your wallet
                                 </Typography>
                                 <Typography className={classes.p_body}>Once you’ve set up your wallet of choice, connect it to OpenSea by clicking the wallet icon in the top right corner. Learn about the wallets we support.</Typography>
                             </Grid>
                             <Grid item lg={3} style={{ textAlign: "center" }}>
-                                <img src={Collection} className={classes.svg}></img>
+                                <img src={Collection} alt='Collection' className={classes.svg}></img>
                                 <Typography className={classes.p_title}>Create your collection
                                 </Typography>
                                 <Typography className={classes.p_body}>Click My Collections and set up your collection. Add social links, a description, profile & banner images, and set a secondary sales fee.</Typography>
                             </Grid>
                             <Grid item lg={3} style={{ textAlign: "center" }}>
-                                <img src={Image} className={classes.svg}></img>
+                                <img src={Image} alt='NFT' className={classes.svg}></img>
                                 <Typography className={classes.p_title}>Add your NFTs
                                 </Typography>
                                 <Typography className={classes.p_body}>Upload your work (image, video, audio, or 3D art), add a title and description, and customize your NFTs with properties, stats, and unlockable content.</Typography>
 
                             </Grid>
                             <Grid item lg={3} style={{ textAlign: "center" }}>
-                                <img src={Label} className={classes.svg}></img>
+                                <img src={Label} alt='Label' className={classes.svg}></img>
                                 <Typography className={classes.p_title}>List them for sale
                                 </Typography>
                                 <Typography className={classes.p_body}>Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your NFTs, and we help you sell them!
@@ -185,7 +185,7 @@ export default function Home() {
                     <Container maxWidth='lg'>
                         <Box display='flex' flexDirection='row' overflow="visible" style={{ flexWrap: 'no-wrap', overflowX: "scroll", gap: 5 }}>
                             {card.map((item) => (
-                                <img src={item} style={{ width: 300, height: 300 }} />
+                                <img src={item} alt='card' style={{ width: 300, height: 300 }} />
                             ))}
 
                         </Box>

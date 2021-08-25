@@ -1,16 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { CardMedia, CardHeader, Card, CardContent, CardActions, Box, IconButton, Avatar, Typography, colors, Button } from '@material-ui/core';
+import { CardMedia, CardHeader, Card, CardContent, CardActions, Box, Avatar, Typography,Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import Cactus from '../assets/image/Cactus.png'
-import Dinosaur from '../assets/image/Dinosaur.png'
 import BuildIcon from '@material-ui/icons/Build';
 import SportsKabaddiIcon from '@material-ui/icons/SportsKabaddi';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import clsx from 'clsx';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 export default function Collectible(props) {
     const classes = useStyles()
-    const { checked, _id, onArm, onTrain, onBoost, onHeal, onSell } = props
+    const { _id, onArm, onTrain, onBoost, onHeal, onSell } = props
     return (
         <Card className={classes.root} elevation={3}>
             <CardHeader

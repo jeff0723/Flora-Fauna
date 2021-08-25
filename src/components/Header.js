@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, FormControlLabel } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, FormControlLabel } from '@material-ui/core'
 import Switch from '@material-ui/core/Switch';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';

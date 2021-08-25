@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Box, Grid, Typography, TextField, InputAdornment, Paper, IconButton } from '@material-ui/core'
+import { Container, Box, Grid, Typography, TextField,Paper, IconButton } from '@material-ui/core'
 import Collectible from './Collectible';
 import SearchIcon from '@material-ui/icons/Search';
 import PropTypes from 'prop-types';
@@ -94,10 +94,6 @@ export default function CollectibleList(props) {
     }
   }
   const [ID,setID] = useState();
-  const handleChange = (e)=>{
-
-  }
-  console.log(ID)
   return (
     <div>
       <Container maxWidth="lg">

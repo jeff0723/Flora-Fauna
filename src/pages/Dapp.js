@@ -13,14 +13,6 @@ import Web3 from "web3"
 
 const namehash = require("eth-ens-namehash")
 
-const data = {
-    _id: 0,
-    address: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e",
-    isArmed: false,
-    price: 298654571194,
-    power: 1000
-
-}
 const useStyles = makeStyles((theme) => ({
     appBarSpacer: theme.mixins.toolbar,
     green: {
@@ -50,12 +42,6 @@ export default function Dapp() {
     })
     const [balance, setBalance] = useState(0)
     const [minionList, setMinionList] = useState({})
-    const [minionInfo, setMinionInfo] = useState([])
-    const [state, setState] = useState({
-        quote: "ETH",
-        base: "USD",
-        minionID: 0,
-    })
     const [checked, setChecked] = useState(false)
     const armyType = checked ? "FaunaArmy" : "FloraArmy";
 
@@ -280,12 +266,6 @@ export default function Dapp() {
 
     const handleChecked = () => {
         setChecked(!checked)
-    }
-    const handleChange = (e) => {
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
-        })
     }
 
 

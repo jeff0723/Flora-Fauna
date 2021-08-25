@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { Container, Box, Typography, Button, Paper } from '@material-ui/core'
 import { useEthers } from "@usedapp/core";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { setConnected } from '../redux/actions';
 import { useHistory } from 'react-router';
 const useStyle = makeStyles((theme) => ({
@@ -15,14 +15,13 @@ const useStyle = makeStyles((theme) => ({
 export default function PersonalInfo(props) {
     const { balance, address } = props
     const { activateBrowserWallet, account } = useEthers();
-    const isLogin = JSON.parse(window.localStorage.getItem('login'));
     const classes = useStyle();
     const history = useHistory();
     const dispatch = useDispatch();
-    const userAccount = useSelector(state => state.connect.userAccount);
     const handleConnect = () => {
         activateBrowserWallet();
     }
+    // eslint-disable-next-line
     useEffect(() => {
         if(account) 
         {
