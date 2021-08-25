@@ -1,0 +1,21 @@
+{
+  "4": {
+    "ArmyEnhancer": [
+      "0xe61e24F727112dC889B8C6D7bdAD6369743d910a",
+      "0x7EE824fE4D2b967aeE17f577ab620a7bE6fcf016"
+    ],
+    "ArmyRank": [
+      "0xaF8fdBAA535CdC9898718106eb1fA9546e54eC54",
+      "0x9094E1bbCD0149751062136309D7E4102BC548C8"
+    ],
+    "Battlefield": [
+      "0x912b6A6f254053cab5C1f0dB7bE6B565454BDDfc"
+    ],
+    "FaunaArmy": [
+      "0xee4e348166e5730275b760fafff2107313A4e6F0"
+    ],
+    "FloraArmy": [
+      "0x938344BD845D4e56873E9e6321F602f6F0f503a2"
+    ]
+  }
+}
