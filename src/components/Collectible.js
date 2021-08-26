@@ -7,6 +7,7 @@ import SportsKabaddiIcon from '@material-ui/icons/SportsKabaddi';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import clsx from 'clsx';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +16,13 @@ const useStyles = makeStyles((theme) => ({
     },
     media: {
         height: 300,
+        border: '10px solid transparent'
     },
+    info:{
+        fontWeight:'bold'
+    },
+    green: { backgroundColor: '#1CBA1C' },
+    red: { backgroundColor: '#FF1F5E' },
 
 }))
 export default function Collectible(props) {
@@ -25,12 +32,14 @@ export default function Collectible(props) {
         <Card className={classes.root} elevation={3}>
             <CardHeader
                 avatar={
-                    <Avatar>
+                    <Avatar className={clsx(classes.green, {
+                        [classes.red]: props.checked
+                    })}>
                         {_id}
                     </Avatar>
                 }
                 title="Minion Warrier"
-                subheader={`${props.address.slice(0, 10)}...`}
+                subheader={props.address}
                 action={
                     <Button
                         value={_id}
@@ -50,13 +59,13 @@ export default function Collectible(props) {
                 alt="none"
             />
             <CardContent>
-                <Typography variant='h6'>
-                    Armed: {props.isArmed.toString()}
+                <Typography variant='h6' className={classes.info}>
+                    Status: {props.isArmed?"Armed":"Unarmed"}
                 </Typography>
-                <Typography variant='h6'>
-                    Price: {props.price}
+                <Typography variant='h6' className={classes.info}>
+                    Price: {(props.price/10**8).toFixed(2)}
                 </Typography>
-                <Typography variant='h6'>
+                <Typography variant='h6' className={classes.info}>
                     Power: {props.power}
                 </Typography>
             </CardContent>

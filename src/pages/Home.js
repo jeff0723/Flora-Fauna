@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Divider } from '@material-ui/core'
+import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Divider,Link as MLink} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../assets/image/Logo.png'
 import Overlap from '../assets/image/Overlap.png'
@@ -90,6 +90,9 @@ const useStyles = makeStyles((theme) => ({
     p_body: {
         fontSize: 16,
         color: "#707a83"
+    },
+    footer:{
+        color:'grey'
     }
 
 }))
@@ -146,28 +149,28 @@ export default function Home() {
                 <Divider />
                 <div style={{ height: 430, marginTop: 50 }}>
                     <Container maxWidth="lg">
-                        <Typography variant='h2' className={classes.h2} style={{ textAlign: "center" }}>Create and sell your NFTs</Typography>
+                        <Typography variant='h2' className={classes.h2} style={{ textAlign: "center" }}>Trade and mint your NFTs</Typography>
                         <Grid container justifyContent="center" spacing={3} style={{ marginTop: 50 }}>
-                            <Grid item lg={3} style={{ textAlign: "center" }}>
+                            <Grid item lg={4} style={{ textAlign: "center" }}>
                                 <img src={Wallet} alt='Wallet' className={classes.svg}></img>
-                                <Typography className={classes.p_title}>Set up your wallet
+                                <Typography className={classes.p_title}>Connect your wallet
                                 </Typography>
-                                <Typography className={classes.p_body}>Once you’ve set up your wallet of choice, connect it to OpenSea by clicking the wallet icon in the top right corner. Learn about the wallets we support.</Typography>
+                                <Typography className={classes.p_body}>Connect to your wallet without any friction by clicking the connect button. We support metamask wallet and any gas fee should be pay in ETH.</Typography>
                             </Grid>
-                            <Grid item lg={3} style={{ textAlign: "center" }}>
+                            <Grid item lg={4} style={{ textAlign: "center" }}>
                                 <img src={Collection} alt='Collection' className={classes.svg}></img>
-                                <Typography className={classes.p_title}>Create your collection
+                                <Typography className={classes.p_title}>Mint NFT and join army
                                 </Typography>
-                                <Typography className={classes.p_body}>Click My Collections and set up your collection. Add social links, a description, profile & banner images, and set a secondary sales fee.</Typography>
+                                <Typography className={classes.p_body}>Select trading pair and mint NFT. Add flora or fauna army according to the prediction.</Typography>
                             </Grid>
-                            <Grid item lg={3} style={{ textAlign: "center" }}>
+                            <Grid item lg={4} style={{ textAlign: "center" }}>
                                 <img src={Image} alt='NFT' className={classes.svg}></img>
-                                <Typography className={classes.p_title}>Add your NFTs
+                                <Typography className={classes.p_title}>Trade and upgrade NFT
                                 </Typography>
-                                <Typography className={classes.p_body}>Upload your work (image, video, audio, or 3D art), add a title and description, and customize your NFTs with properties, stats, and unlockable content.</Typography>
+                                <Typography className={classes.p_body}>Predict the price change. Use your trading skill to upgrade NFT. Up to five levels can be achieved.</Typography>
 
                             </Grid>
-                            <Grid item lg={3} style={{ textAlign: "center" }}>
+                            {/* <Grid item lg={3} style={{ textAlign: "center" }}>
                                 <img src={Label} alt='Label' className={classes.svg}></img>
                                 <Typography className={classes.p_title}>List them for sale
                                 </Typography>
@@ -175,7 +178,7 @@ export default function Home() {
 
                                 </Typography>
 
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </Container>
                 </div>
@@ -192,6 +195,15 @@ export default function Home() {
                     </Container>
                 </div>
             </main>
+            <Divider/>
+            <div style={{textAlign:'center', marginTop:50,marginBottom:50}}>
+                <Typography variant='h6' className={classes.footer}>Contact: jeffreylin0723@gmail.com</Typography>
+                <Typography variant='h6' className={classes.footer}>Github:  <MLink href="https://github.com/jeff0723/Flora-Fauna" target="_blank">Flora-Fauna</MLink></Typography>
+
+                <Typography variant='body'>{"Copyright © "}</Typography>
+
+            </div>
+
         </div>
     )
 }

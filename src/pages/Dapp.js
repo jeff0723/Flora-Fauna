@@ -1,7 +1,7 @@
 import Header from '../components/Header'
 import PersonalInfo from '../components/PersonalInfo'
 import CollectibleList from '../components/CollectibleList'
-import Recruit from '../components/Recruit'
+import BackgroundDapp from '../assets/image/BackgroundDapp.png'
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Typography } from '@material-ui/core'
@@ -15,15 +15,12 @@ const namehash = require("eth-ens-namehash")
 
 const useStyles = makeStyles((theme) => ({
     appBarSpacer: theme.mixins.toolbar,
-    green: {
-        backgroundColor: '#E8F7E8',
-        width: '100%',
-        height: '100%'
+    root: {
+        background:`url(${BackgroundDapp})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: "100% 100%",
 
     },
-    red: {
-        backgroundColor: '#FFE5ED'
-    }
 }))
 export default function Dapp() {
 
@@ -273,9 +270,7 @@ export default function Dapp() {
     console.log()
     return (
         <>
-            <div className={clsx(classes.green, {
-                [classes.red]: checked
-            })}>
+            <div className={classes.root}>
                 <CssBaseline />
                 <Header checked={checked} toggleChecked={handleChecked} />
 

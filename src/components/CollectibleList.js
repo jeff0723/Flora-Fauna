@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import Recruit from './Recruit';
 import AddIcon from '@material-ui/icons/Add';
 import clsx from 'clsx';
-import Popper from '@material-ui/core/Popper';
+import RinkebyPairMap  from '../assets/map/index.js'
+import Loading from '../assets/image/Loading.gif'
 
 
 
@@ -49,15 +50,20 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     fontWeight: 'bold',
     border: "none"
+  },
+  gif: {
+    width: '70%',
+    height: '70%',
+    paddingBottom: 100
   }
 }));
 
 export default function CollectibleList(props) {
-  const { checked, list, onArm, onTrain, onBoost, onHeal, onSell,onRecruit } = props
-  const [data,setData] = useState([])
+  const { checked, list, onArm, onTrain, onBoost, onHeal, onSell, onRecruit } = props
+  const [data, setData] = useState([])
   const [tokenURI, setTokenURI] = useState([])
   const [open, setOpen] = useState(false)
-  
+
   const classes = useStyles();
   useEffect(() => {
     if (list) {
@@ -65,7 +71,7 @@ export default function CollectibleList(props) {
       for (const key in list) {
         temp.push({
           _id: key,
-          address: list[key][0],
+          address: RinkebyPairMap[list[key][0]],
           isArmed: list[key][1],
           price: list[key][2],
           power: list[key][3],
@@ -78,9 +84,9 @@ export default function CollectibleList(props) {
   useEffect(() => {
     setTokenURI([]);
   }, [checked])
-  
+
   useEffect(() => {
-    for (const idx in data){
+    for (const idx in data) {
       fetch(data[idx].tokenURI)
         .then(res => res.json())
         .then((object) => {
@@ -88,57 +94,56 @@ export default function CollectibleList(props) {
           console.log('async', object.image)
         })
     }
-   
+
   }, [data])
   const handleClickOpen = () => {
     setOpen(true)
-}
+  }
 
   const handleClose = () => {
     setOpen(false);
-  };  
+  };
   console.log(tokenURI)
-
   return (
+
     <div>
       <Container maxWidth="lg">
         <Box display="flex" flexDirection="row" justifyContent="space-between" maxWidth={1000} >
           <Box >
-            <Typography variant='h6'> Collectibles</Typography>
+            <Typography variant='h6' style={{ fontWeight: 'bold' }}> Collectibles</Typography>
           </Box>
           <Box>
             <Button className={clsx(classes.green, {
               [classes.red]: checked
-            })} variant='outlined' 
-            endIcon={<AddIcon />}
-            onClick={handleClickOpen}>
+            })} variant='outlined'
+              endIcon={<AddIcon />}
+              onClick={handleClickOpen}>
               Recruit Minion
             </Button>
-            <Dialog open={open} style={{textAlign:'center'}} onClose={handleClose}>
-            <DialogTitle id="form-dialog-title">Recruit Minion</DialogTitle>
-            <Recruit onRecruit={onRecruit}/>
+            <Dialog open={open} style={{ textAlign: 'center' }} onClose={handleClose}>
+              <DialogTitle id="form-dialog-title">Recruit Minion</DialogTitle>
+              <Recruit onRecruit={onRecruit} />
             </Dialog>
           </Box>
         </Box>
         <Grid container spacing={5} className={classes.root} alignItems="center">
-          {(data.length) && (data.length == tokenURI.length) ? data.map((item, i) => (
-            <Grid item lg={6} key={i} >
-              <Collectible
-                checked={checked}
-                _id={item._id}
-                address={item.address}
-                isArmed={item.isArmed}
-                price={item.price}
-                power={item.power}
-                tokenURI={tokenURI[i]}
-                onArm={onArm}
-                onTrain={onTrain}
-                onBoost={onBoost}
-                onHeal={onHeal}
-                onSell={onSell}
-              />
-            </Grid>
-          )) :
+          {(data.length) && (data.length == tokenURI.length) ?
+            data.map((item, i) => (
+              <Grid item lg={6} key={i} >
+                <Collectible checked={checked}
+                  _id={item._id}
+                  address={item.address}
+                  isArmed={item.isArmed}
+                  price={item.price}
+                  power={item.power}
+                  tokenURI={tokenURI[i]}
+                  onArm={onArm}
+                  onTrain={onTrain}
+                  onBoost={onBoost}
+                  onHeal={onHeal}
+                  onSell={onSell}
+                />
+              </Grid>)) :
             <Grid item lg={12}>
               <Paper className={classes.paper} style={{ minWidth: 800 }}>
                 <Typography >
@@ -147,8 +152,8 @@ export default function CollectibleList(props) {
               </Paper>
             </Grid>
           }
-
         </Grid>
+
       </Container>
     </div>
   )
@@ -163,5 +168,5 @@ CollectibleList.propTypes = {
   onBoost: PropTypes.func.isRequired,
   onHeal: PropTypes.func.isRequired,
   onSell: PropTypes.func.isRequired,
-  onRecruit:PropTypes.func.isRequired
+  onRecruit: PropTypes.func.isRequired
 }

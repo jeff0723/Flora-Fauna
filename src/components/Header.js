@@ -1,39 +1,61 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, FormControlLabel } from '@material-ui/core'
+import { Link } from "react-router-dom";
+import { AppBar, Toolbar, Typography, FormControlLabel, Button, Grid, Container } from '@material-ui/core'
 import Switch from '@material-ui/core/Switch';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-
+import Logo from '../assets/image/Logo.png'
 const useStyle = makeStyles((theme) => ({
-    toolBar: {
-        background: '#1CBA1C'
-    },
-    toolBarToggled:{
-        background: '#FF1F5E'
-    },
-    title: {
+    appBar:{backgroundColor:'#FFFFFF'},
+    green: { color: '#1CBA1C' },
+    red: { color: '#FF1F5E' },
+    switch_green: {
         flexGrow: 1,
-        color: "#FFFFFF"
+        color:  '#1CBA1C'
+    },
+    switch_red:{
+        flexGrow: 1,
+        color: '#FF1F5E'
+    },
+    logo: {
+        heigh: 40,
+        width: 100,
+    },
+    logoButton: {
+        flexGrow: 1,
     }
 }))
 export default function Header(props) {
     const classes = useStyle()
     return (
-        <AppBar>
-            <Toolbar className={clsx(classes.toolBar,{
-                [classes.toolBarToggled]:props.checked
-            })}>
-                <Typography variant="h6" className={classes.title}>
-                    {!props.checked?"Flora Army":"Fauna Army"}
-                </Typography>
+        <AppBar className={classes.appBar}>
+            <Toolbar >
+                <Grid container>
+                    <Grid item lg={6} >
+                        <Button component={Link} to="/">
+                            <img src={Logo} className={classes.logo} />
+                        </Button>
+                    </Grid>
+                    <Grid item lg={6} style={{ paddingTop: 20 }}>
+                        <Typography variant="h5" className={clsx(classes.green, {
+                            [classes.red]: props.checked
+                        })} >
+                            {!props.checked ? "Flora Army" : "Fauna Army"}
+                        </Typography>
+                    </Grid>
+                </Grid>
                 <FormControlLabel
-                    control={<Switch/>}
+                    control={<Switch />}
                     label="Change Army"
                     labelPlacement="start"
-                    checked={props.checked} 
+                    checked={props.checked}
                     onChange={props.toggleChecked}
+                    className={clsx(classes.switch_green, {
+                        [classes.switch_red]: props.checked
+                    })}
                 />
+
 
             </Toolbar>
 

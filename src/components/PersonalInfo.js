@@ -35,7 +35,7 @@ export default function PersonalInfo(props) {
         <Container>
             <Box display="flex" flexDirection="row" maxWidth={1000} minWidth={800}>
                 <Box flexGrow={1}>
-                    <Typography variant='h6'>Balance</Typography>
+                    <Typography variant='h6' style={{fontWeight:'bold'}}>Balance</Typography>
                 </Box>
                 <Box>
                     {!address?<>
