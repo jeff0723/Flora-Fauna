@@ -43,7 +43,7 @@ export default function PersonalInfo(props) {
                     </>:<></>}
                 </Box>
             </Box>
-            <Paper className={classes.paper} style={{ maxWidth: 1000 , minWidth:800}} elevation={3}>
+            <Paper className={classes.paper} style={{ maxWidth: 1000 , minWidth:800, borderRadius:20}} elevation={3}>
                 {address ?
                     <>
                         <Typography>Your account address:  {address}</Typography>

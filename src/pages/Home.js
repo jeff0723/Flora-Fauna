@@ -4,9 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../assets/image/Logo.png'
 import Overlap from '../assets/image/Overlap.png'
 import Background from '../assets/image/Background.jpg'
+import BackgroundDapp from '../assets/image/BackgroundDapp.png'
 import Wallet from '../assets/image/Wallet.svg'
 import Collection from '../assets/image/Collection.svg'
-import Label from '../assets/image/Label.svg'
 import Image from '../assets/image/Image.svg'
 import { Link } from "react-router-dom";
 import fauna_1 from '../assets/image/fauna_1.png'
@@ -36,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
         padding: "150px 88px 88px 152px"
     },
     main: {
-        backgroundImage: `url(${Background})`,
+        backgroundImage: `url(${BackgroundDapp})`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize: "100% 40%"
+        backgroundSize: "100% 100%"
     },
     title: {
         fontWeight: "bold",
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         textTransform: 'none',
-        background: "#5C1FA6",
+        background: "#5c1fa6",
         color: "#FFFFFF",
         boderRadius: 8,
         fontWeight: "bold",
@@ -125,7 +125,7 @@ export default function Home() {
             </AppBar>
             <main>
                 <Toolbar />
-                <section className={classes.main} style={{ height: 830,marginBottom:50}}>
+                <section className={classes.main} style={{ height: 830}}>
 
                     <Box display='flex' flexDirection='row'>
                         <Box className={classes.bodyLeft}>
@@ -147,7 +147,7 @@ export default function Home() {
                     </Box>
                 </section>
                 <Divider />
-                <div style={{ height: 430, marginTop: 50 }}>
+                <div style={{ height: 430, marginTop: 100 }}>
                     <Container maxWidth="lg">
                         <Typography variant='h2' className={classes.h2} style={{ textAlign: "center" }}>Trade and mint your NFTs</Typography>
                         <Grid container justifyContent="center" spacing={3} style={{ marginTop: 50 }}>

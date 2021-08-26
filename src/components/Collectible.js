@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     },
     media: {
         height: 300,
-        border: '10px solid transparent'
     },
     info:{
         fontWeight:'bold'
@@ -29,7 +28,7 @@ export default function Collectible(props) {
     const classes = useStyles()
     const { _id, onArm, onTrain, onBoost, onHeal, onSell } = props
     return (
-        <Card className={classes.root} elevation={3}>
+        <Card className={classes.root} style={{borderRadius:20}} elevation={3}>
             <CardHeader
                 avatar={
                     <Avatar className={clsx(classes.green, {
@@ -44,7 +43,7 @@ export default function Collectible(props) {
                     <Button
                         value={_id}
                         variant='outlined'
-                        style={{textTransform:"none"}}
+                        style={{textTransform:"none",marginTop:10,marginRight:10}}
                         endIcon={<MonetizationOnIcon />}
                         onClick={onSell}
                     >Liberate
