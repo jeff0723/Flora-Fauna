@@ -145,7 +145,7 @@ export default function CollectibleList(props) {
                 />
               </Grid>)) :
             <Grid item lg={12}>
-              <Paper className={classes.paper} style={{ minWidth: 800 }}>
+              <Paper className={classes.paper} style={{ minWidth: 800,borderRadius:20}}>
                 <Typography >
                   You don't have any collectible yet. Recruit a minoin to have your first one!
                 </Typography>

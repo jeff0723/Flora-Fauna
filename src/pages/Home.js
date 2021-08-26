@@ -200,7 +200,7 @@ export default function Home() {
                 <Typography variant='h6' className={classes.footer}>Contact: jeffreylin0723@gmail.com</Typography>
                 <Typography variant='h6' className={classes.footer}>Github:  <MLink href="https://github.com/jeff0723/Flora-Fauna" target="_blank">Flora-Fauna</MLink></Typography>
 
-                <Typography variant='body'>{"Copyright © "}</Typography>
+                <Typography variant='body' style={{color:'grey'}}>{"Copyright © "}</Typography>
 
             </div>
 
