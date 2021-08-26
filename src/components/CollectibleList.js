@@ -1,62 +1,17 @@
-import React,{useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Box, Grid, Typography, TextField,Paper, IconButton } from '@material-ui/core'
+import { Container, Box, Grid, Typography, Paper, Button } from '@material-ui/core'
 import Collectible from './Collectible';
-import SearchIcon from '@material-ui/icons/Search';
 import PropTypes from 'prop-types';
+import AddIcon from '@material-ui/icons/Add';
+import clsx from 'clsx';
 
-// const data = [{
-
-//   _id: 0,
-//   address: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e",
-//   isArmed: false,
-//   price: 298654571194,
-//   power: 1000
-
-// },
-// {
-
-//   _id: 1,
-//   address: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e",
-//   isArmed: false,
-//   price: 298654571194,
-//   power: 1000
-
-// }, {
-
-//   _id: 2,
-//   address: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e",
-//   isArmed: false,
-//   price: 298654571194,
-//   power: 1000
-
-// }, {
-
-//   _id: 3,
-//   address: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e",
-//   isArmed: false,
-//   price: 298654571194,
-//   power: 1000
-
-// }, {
-
-//   _id: 4,
-//   address: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e",
-//   isArmed: false,
-//   price: 298654571194,
-//   power: 1000
-
-// }, {
-
-//   _id: 5,
-//   address: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e",
-//   isArmed: false,
-//   price: 298654571194,
-//   power: 1000
-
-// },
-// ]
-
+const defaultProps = {
+  bgcolor: 'background.paper',
+  m: 1,
+  border: 1,
+  style: { width: '5rem', height: '5rem' },
+};
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 10,
@@ -74,26 +29,63 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: '20px',
     padding: '32px',
+  },
+  green: {
+    background: '#1CBA1C',
+    borderRadius: 10,
+    color: "#FFFFFF",
+    padding: 10,
+    fontWeight: 'bold',
+    border: "none"
+  },
+  red: {
+    background: '#FF1F5E',
+    borderRadius: 10,
+    color: "#FFFFFF",
+    padding: 10,
+    fontWeight: 'bold',
+    border: "none"
   }
 }));
 
 export default function CollectibleList(props) {
   const { checked, list, onArm, onTrain, onBoost, onHeal, onSell } = props
+  const [data,setData] = useState([])
+  const [tokenURI, setTokenURI] = useState([])
   const classes = useStyles();
-  let data = [];
-  if (list) {
-    for (const key in list) {
-      data.push({
-        _id: key,
-        address: list[key][0],
-        isArmed: list[key][1],
-        price: list[key][2],
-        power: list[key][3],
-        tokenURI: list[key][4]
-      })
+  useEffect(() => {
+    if (list) {
+      let temp = []
+      for (const key in list) {
+        temp.push({
+          _id: key,
+          address: list[key][0],
+          isArmed: list[key][1],
+          price: list[key][2],
+          power: list[key][3],
+          tokenURI: list[key][4]
+        })
+      }
+      setData(temp);
     }
-  }
-  const [ID,setID] = useState();
+  }, [list])
+  useEffect(() => {
+    setTokenURI([]);
+  }, [checked])
+  
+  useEffect(() => {
+    for (const idx in data){
+      fetch(data[idx].tokenURI)
+        .then(res => res.json())
+        .then((object) => {
+          setTokenURI(oldArray => [...oldArray, object.image])
+          console.log('async', object.image)
+        })
+    }
+   
+  }, [data])
+  console.log(tokenURI)
+
   return (
     <div>
       <Container maxWidth="lg">
@@ -102,23 +94,17 @@ export default function CollectibleList(props) {
             <Typography variant='h6'> Collectibles</Typography>
           </Box>
           <Box>
-            <form >
-            <TextField
-              className={classes.search}
-              placeholder='Search by ID...'
-              value={ID}
-              onChange={(e) => setID( e.target.value )}
-            />
-            <IconButton className={classes.iconButton}>
-              <SearchIcon />
-            </IconButton>
-            </form>
+            <Button className={clsx(classes.green, {
+              [classes.red]: checked
+            })} variant='outlined' endIcon={<AddIcon />}>
+              Recruit Minion
+            </Button>
 
           </Box>
         </Box>
-        <Grid container spacing={3} className={classes.root}>
-          {data.length ? data.map((item, i) => (
-            <Grid item lg={6} key={i}>
+        <Grid container spacing={5} className={classes.root} alignItems="center">
+          {(data.length) && (data.length == tokenURI.length) ? data.map((item, i) => (
+            <Grid item lg={6} key={i} >
               <Collectible
                 checked={checked}
                 _id={item._id}
@@ -126,7 +112,7 @@ export default function CollectibleList(props) {
                 isArmed={item.isArmed}
                 price={item.price}
                 power={item.power}
-                tokenURI={item.tokenURI}
+                tokenURI={tokenURI[i]}
                 onArm={onArm}
                 onTrain={onTrain}
                 onBoost={onBoost}
@@ -144,12 +130,12 @@ export default function CollectibleList(props) {
             </Grid>
           }
 
-
         </Grid>
       </Container>
     </div>
   )
 }
+
 
 CollectibleList.propTypes = {
   checked: PropTypes.bool.isRequired,

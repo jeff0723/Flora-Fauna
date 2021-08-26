@@ -21,7 +21,7 @@ export default function PersonalInfo(props) {
     const handleConnect = () => {
         activateBrowserWallet();
     }
-    // eslint-disable-next-line
+
     useEffect(() => {
         if(account) 
         {
