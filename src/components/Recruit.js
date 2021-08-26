@@ -33,7 +33,7 @@ export default function Recruit(props) {
     return (
         <div>
             <Container maxWidth='sm'>
-                <Paper style={{ padding: 32 }} elevation={3}>
+                <Paper style={{ padding: 32 }} elevation={0}>
                     <Box display="flex"
                         flexDirection="column"
                         alignItems='center'
@@ -55,12 +55,13 @@ export default function Recruit(props) {
                             <Button
                                 onClick={handleClick}
                                 variant='outlined'
-                                color='primary'>
+                                color='primary'
+                                stlye={{paddingBottom:10}}>
                                 Recruit
                             </Button>
                         </Box>
                     </Box>
-                </Paper>
+                    </Paper>
             </Container>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="error">

@@ -17,16 +17,16 @@ const useStyles = makeStyles((theme) => ({
     appBarSpacer: theme.mixins.toolbar,
     green: {
         backgroundColor: '#E8F7E8',
-        position: 'fixed',
         width: '100%',
         height: '100%'
+
     },
     red: {
         backgroundColor: '#FFE5ED'
     }
 }))
 export default function Dapp() {
-    
+
     const classes = useStyles();
 
     const [setting, setSetting] = useState({
@@ -81,7 +81,8 @@ export default function Dapp() {
             if (chainid <= 42) {
                 chain = chainid.toString()
             }
-            const enhrContract = await loadContract(chain, "ArmyEnhancer", 1)
+            const enhancerType = checked ? 0 : 1
+            const enhrContract = await loadContract(chain, "ArmyEnhancer", enhancerType)
             const armyContract = await loadContract(chain, armyType, 0)
 
             if (!enhrContract || !armyContract) {
@@ -102,7 +103,7 @@ export default function Dapp() {
         }
 
 
-    }, [setting,checked])
+    }, [setting, checked])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -162,7 +163,7 @@ export default function Dapp() {
         let minionList = {}
         for (let id of minionIDs) {
             minionList[id] = Object.values(await armyContract.methods.getMinionInfo(id).call())
-            minionList[id].push(await armyContract.methods.tokenURI(id).call()) 
+            minionList[id].push(await armyContract.methods.tokenURI(id).call())
         }
         console.log(minionList)
         setMinionList(minionList)
@@ -239,7 +240,7 @@ export default function Dapp() {
         const { armyContract } = contractInfo
         e.preventDefault()
         const pid = parseInt(e.currentTarget.value)
-        armyContract.methods.reinforce(pid).send({ from: accounts[0] })
+        armyContract.methods.boost(pid).send({ from: accounts[0] })
             .on("receipt", () => {
                 armyGetList()
                 enhrGetBalance()
@@ -254,7 +255,7 @@ export default function Dapp() {
         const { armyContract } = contractInfo
         e.preventDefault()
         const pid = parseInt(e.currentTarget.value)
-        armyContract.methods.recover(pid).send({ from: accounts[0] })
+        armyContract.methods.heal(pid).send({ from: accounts[0] })
             .on("receipt", () => {
                 armyGetList()
                 enhrGetBalance()
@@ -269,7 +270,7 @@ export default function Dapp() {
     }
 
 
-    console.log("MinionList:",minionList)
+    console.log()
     return (
         <>
             <div className={clsx(classes.green, {
@@ -279,13 +280,8 @@ export default function Dapp() {
                 <Header checked={checked} toggleChecked={handleChecked} />
 
                 <div className={classes.appBarSpacer} />
-                <main style={{height:830}}>
-                <Box display='flex'
-                    flexDirection='row'
-                    style={{
-                        padding: 30, marginLeft: 100, width: '90%'
-                    }}
-                >
+                <div style={{ height: 1000, padding: 30, paddingLeft: 200}}>
+
                     <Box>
                         <Box display='flex' flexDirection='column' style={{ gap: 25 }}>
                             <PersonalInfo balance={balance} address={setting.accounts ? setting.accounts[0] : ""} />
@@ -296,15 +292,12 @@ export default function Dapp() {
                                 onTrain={onTrain}
                                 onBoost={onBoost}
                                 onHeal={onHeal}
-                                onSell={onSell} />
+                                onSell={onSell}
+                                onRecruit={onRecruit} />
                         </Box>
                     </Box>
-                    <Box style={{ marginLeft: 50 }}>
-                        <Typography variant='h6' style={{ paddingLeft: 20, marginBottom: 20 }}>Recruit Minion</Typography>
-                        <Recruit onRecruit={onRecruit} />
-                    </Box>
-                </Box>
-                </main>
+                </div>
+
             </div>
         </>
 

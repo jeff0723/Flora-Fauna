@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Box, Grid, Typography, Paper, Button } from '@material-ui/core'
+import { Container, Box, Grid, Typography, Paper, Button, Dialog, DialogTitle, DialogActions } from '@material-ui/core'
 import Collectible from './Collectible';
 import PropTypes from 'prop-types';
+import Recruit from './Recruit';
 import AddIcon from '@material-ui/icons/Add';
 import clsx from 'clsx';
+import Popper from '@material-ui/core/Popper';
+
+
 
 const defaultProps = {
   bgcolor: 'background.paper',
@@ -49,9 +53,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CollectibleList(props) {
-  const { checked, list, onArm, onTrain, onBoost, onHeal, onSell } = props
+  const { checked, list, onArm, onTrain, onBoost, onHeal, onSell,onRecruit } = props
   const [data,setData] = useState([])
   const [tokenURI, setTokenURI] = useState([])
+  const [open, setOpen] = useState(false)
+  
   const classes = useStyles();
   useEffect(() => {
     if (list) {
@@ -84,6 +90,13 @@ export default function CollectibleList(props) {
     }
    
   }, [data])
+  const handleClickOpen = () => {
+    setOpen(true)
+}
+
+  const handleClose = () => {
+    setOpen(false);
+  };  
   console.log(tokenURI)
 
   return (
@@ -96,10 +109,15 @@ export default function CollectibleList(props) {
           <Box>
             <Button className={clsx(classes.green, {
               [classes.red]: checked
-            })} variant='outlined' endIcon={<AddIcon />}>
+            })} variant='outlined' 
+            endIcon={<AddIcon />}
+            onClick={handleClickOpen}>
               Recruit Minion
             </Button>
-
+            <Dialog open={open} style={{textAlign:'center'}} onClose={handleClose}>
+            <DialogTitle id="form-dialog-title">Recruit Minion</DialogTitle>
+            <Recruit onRecruit={onRecruit}/>
+            </Dialog>
           </Box>
         </Box>
         <Grid container spacing={5} className={classes.root} alignItems="center">
@@ -144,5 +162,6 @@ CollectibleList.propTypes = {
   onTrain: PropTypes.func.isRequired,
   onBoost: PropTypes.func.isRequired,
   onHeal: PropTypes.func.isRequired,
-  onSell: PropTypes.func.isRequired
+  onSell: PropTypes.func.isRequired,
+  onRecruit:PropTypes.func.isRequired
 }
