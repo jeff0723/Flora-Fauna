@@ -240,29 +240,29 @@
     }
   ],
   "allSourcePaths": {
-    "14": "C:/Users/justa/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorInterface.sol",
-    "15": "C:/Users/justa/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV2V3Interface.sol",
-    "16": "C:/Users/justa/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol"
+    "14": "/Users/jeffery.yh.lin/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorInterface.sol",
+    "15": "/Users/jeffery.yh.lin/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV2V3Interface.sol",
+    "16": "/Users/jeffery.yh.lin/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol"
   },
   "ast": {
-    "absolutePath": "C:/Users/justa/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV2V3Interface.sol",
+    "absolutePath": "/Users/jeffery.yh.lin/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV2V3Interface.sol",
     "exportedSymbols": {
       "AggregatorInterface": [
-        4826
+        4831
       ],
       "AggregatorV2V3Interface": [
-        3740
+        3745
       ],
       "AggregatorV3Interface": [
-        3055
+        3060
       ]
     },
-    "id": 3741,
+    "id": 3746,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3733,
+        "id": 3738,
         "literals": [
           "solidity",
           ">=",
@@ -273,25 +273,25 @@
         "src": "32:24:15"
       },
       {
-        "absolutePath": "C:/Users/justa/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorInterface.sol",
+        "absolutePath": "/Users/jeffery.yh.lin/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorInterface.sol",
         "file": "./AggregatorInterface.sol",
-        "id": 3734,
+        "id": 3739,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 3741,
-        "sourceUnit": 4827,
+        "scope": 3746,
+        "sourceUnit": 4832,
         "src": "58:35:15",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "C:/Users/justa/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol",
+        "absolutePath": "/Users/jeffery.yh.lin/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol",
         "file": "./AggregatorV3Interface.sol",
-        "id": 3735,
+        "id": 3740,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 3741,
-        "sourceUnit": 3056,
+        "scope": 3746,
+        "sourceUnit": 3061,
         "src": "94:37:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -301,47 +301,45 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 3736,
+              "id": 3741,
               "name": "AggregatorInterface",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 4826,
+              "referencedDeclaration": 4831,
               "src": "170:19:15"
             },
-            "id": 3737,
+            "id": 3742,
             "nodeType": "InheritanceSpecifier",
             "src": "170:19:15"
           },
           {
             "baseName": {
-              "id": 3738,
+              "id": 3743,
               "name": "AggregatorV3Interface",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 3055,
+              "referencedDeclaration": 3060,
               "src": "191:21:15"
             },
-            "id": 3739,
+            "id": 3744,
             "nodeType": "InheritanceSpecifier",
             "src": "191:21:15"
           }
         ],
-        "contractDependencies": [
-          3055,
-          4826
-        ],
+        "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 3740,
+        "id": 3745,
         "linearizedBaseContracts": [
-          3740,
-          3055,
-          4826
+          3745,
+          3060,
+          4831
         ],
         "name": "AggregatorV2V3Interface",
         "nameLocation": "143:23:15",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 3741,
-        "src": "133:83:15"
+        "scope": 3746,
+        "src": "133:83:15",
+        "usedErrors": []
       }
     ],
     "src": "32:185:15"
@@ -354,7 +352,7 @@
       "enabled": true,
       "runs": 200
     },
-    "version": "0.8.3+commit.8d00100c"
+    "version": "0.8.7+commit.e28d00a7"
   },
   "contractName": "AggregatorV2V3Interface",
   "coverageMap": {
@@ -382,6 +380,6 @@
   "sha1": "7e749a342af5d39f2e12bde8dd48e36aa705a2b6",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.6.0;\n\nimport \"./AggregatorInterface.sol\";\nimport \"./AggregatorV3Interface.sol\";\n\ninterface AggregatorV2V3Interface is AggregatorInterface, AggregatorV3Interface\n{\n}\n",
   "sourceMap": "",
-  "sourcePath": "C:/Users/justa/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV2V3Interface.sol",
+  "sourcePath": "/Users/jeffery.yh.lin/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV2V3Interface.sol",
   "type": "interface"
 }

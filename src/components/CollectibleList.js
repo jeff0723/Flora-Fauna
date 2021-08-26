@@ -78,7 +78,7 @@ export default function CollectibleList(props) {
           tokenURI: list[key][4]
         })
       }
-      setData(temp);
+      if(!data.length) setData(temp);
     }
   }, [list])
   useEffect(() => {

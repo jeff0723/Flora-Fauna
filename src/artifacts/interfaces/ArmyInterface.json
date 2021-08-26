@@ -465,7 +465,7 @@
         "src": "32:23:2"
       },
       {
-        "absolutePath": "C:/Users/justa/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.0.0/contracts/token/ERC721/IERC721.sol",
+        "absolutePath": "/Users/jeffery.yh.lin/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.0.0/contracts/token/ERC721/IERC721.sol",
         "file": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "id": 2,
         "nameLocation": "-1:-1:-1",
@@ -492,10 +492,7 @@
             "src": "200:7:2"
           }
         ],
-        "contractDependencies": [
-          180,
-          192
-        ],
+        "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
           "id": 3,
@@ -1187,7 +1184,8 @@
           }
         ],
         "scope": 65,
-        "src": "173:651:2"
+        "src": "173:651:2",
+        "usedErrors": []
       }
     ],
     "src": "32:792:2"
