@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Recruit from './Recruit';
 import AddIcon from '@material-ui/icons/Add';
 import clsx from 'clsx';
-import LocalPairMap from '../assets/map/index.js'
+import RinkebyPairMap from '../assets/map/index.js'
 import Loading from '../assets/image/Loading.gif'
 
 
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CollectibleList(props) {
-  const { checked, list, tokenURI,onArm, onTrain, onBoost, onHeal, onSell, onRecruit } = props
+  const { checked, list, onArm, onTrain, onBoost, onHeal, onSell, onRecruit } = props
   const [data, setData] = useState([])
   const [open, setOpen] = useState(false)
 
@@ -70,7 +70,7 @@ export default function CollectibleList(props) {
       for (const key in list) {
         temp.push({
           _id: key,
-          address: LocalPairMap[list[key][0]],
+          address: RinkebyPairMap[list[key][0]],
           isArmed: list[key][1],
           price: list[key][2],
           power: list[key][3],
@@ -87,7 +87,6 @@ export default function CollectibleList(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(tokenURI)
   return (
 
     <div>
@@ -116,11 +115,12 @@ export default function CollectibleList(props) {
               <Grid item lg={6} key={i} >
                 <Collectible checked={checked}
                   _id={item._id}
+                  checked={checked}
                   address={item.address}
                   isArmed={item.isArmed}
                   price={item.price}
                   power={item.power}
-                  tokenURI={tokenURI[i]}
+                  tokenURI={item.tokenURI}
                   onArm={onArm}
                   onTrain={onTrain}
                   onBoost={onBoost}
@@ -147,7 +147,6 @@ export default function CollectibleList(props) {
 CollectibleList.propTypes = {
   checked: PropTypes.bool.isRequired,
   list: PropTypes.object.isRequired,
-  tokenURI:PropTypes.array.isRequired,
   onArm: PropTypes.func.isRequired,
   onTrain: PropTypes.func.isRequired,
   onBoost: PropTypes.func.isRequired,
