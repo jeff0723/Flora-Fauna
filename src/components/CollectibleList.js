@@ -105,17 +105,16 @@ export default function CollectibleList(props) {
             </Button>
             <Dialog open={open} style={{ textAlign: 'center' }} onClose={handleClose}>
               <DialogTitle id="form-dialog-title">Recruit Minion</DialogTitle>
-              <Recruit onRecruit={onRecruit} />
+              <Recruit onRecruit={onRecruit} onClose={handleClose} />
             </Dialog>
           </Box>
         </Box>
         <Grid container spacing={5} className={classes.root} alignItems="center">
-          {(data.length)?
+          {(data.length) ?
             data.map((item, i) => (
               <Grid item lg={6} key={i} >
                 <Collectible checked={checked}
                   _id={item._id}
-                  checked={checked}
                   address={item.address}
                   isArmed={item.isArmed}
                   price={item.price}
@@ -145,8 +144,8 @@ export default function CollectibleList(props) {
 
 
 CollectibleList.propTypes = {
-  checked: PropTypes.bool.isRequired,
   list: PropTypes.object.isRequired,
+  tokenURI:PropTypes.array.isRequired,
   onArm: PropTypes.func.isRequired,
   onTrain: PropTypes.func.isRequired,
   onBoost: PropTypes.func.isRequired,

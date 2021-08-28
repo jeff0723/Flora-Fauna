@@ -40,7 +40,7 @@ export default function Dapp() {
     })
     const [balance, setBalance] = useState(0)
     const [minionList, setMinionList] = useState({})
-    const [tokenURI, setTokenURI] = useState([])
+
     const [checked, setChecked] = useState(false)
     const armyType = checked ? "FaunaArmy" : "FloraArmy";
 
@@ -116,18 +116,19 @@ export default function Dapp() {
             }
         }
         fetchData()
+        console.log('refetech')
     }, [contractInfo])
 
-    useEffect(() => {
-        setTokenURI([])
-        for (const key in minionList) {
-            fetch(minionList[key][4])
-                .then(res => res.json())
-                .then((object) => {
-                    setTokenURI(oldArray => [...oldArray, object.image])
-                })
-        }
-    }, [minionList])
+    // useEffect(() => {
+    //     setTokenURI([])
+    //     for (const key in minionList) {
+    //         fetch(minionList[key][4])
+    //             .then(res => res.json())
+    //             .then((object) => {
+    //                 setTokenURI(oldArray => [...oldArray, object.image])
+    //             })
+    //     }
+    // }, [minionList])
     const loadContract = async (chain, contractName, which) => {
         // Load a deployed contract instance into a web3 contract object
         const { web3 } = setting
@@ -296,7 +297,6 @@ export default function Dapp() {
                             <CollectibleList
                                 checked={checked}
                                 list={minionList}
-                                tokenURI={tokenURI}
                                 onArm={onArm}
                                 onTrain={onTrain}
                                 onBoost={onBoost}

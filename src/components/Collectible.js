@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Collectible(props) {
     const classes = useStyles()
-    const { _id, checked, tokenURI, onArm, onTrain, onBoost, onHeal, onSell } = props
+    const { _id,tokenURI, onArm, onTrain, onBoost, onHeal, onSell } = props
     const [loading,setLoading] = useState(true)
     const [imageURL, setImageURL] = useState("")
 
@@ -153,9 +153,7 @@ return (
 }
 
 Collectible.propTypes = {
-    checked: PropTypes.bool.isRequired,
     _id: PropTypes.number.isRequired,
-    checked:PropTypes.bool.isRequired,
     address: PropTypes.string.isRequired,
     isArmed: PropTypes.bool.isRequired,
     price: PropTypes.number.isRequired,
