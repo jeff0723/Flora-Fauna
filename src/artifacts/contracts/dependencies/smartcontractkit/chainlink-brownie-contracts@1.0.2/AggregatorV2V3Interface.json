@@ -248,21 +248,21 @@
     "absolutePath": "/Users/JustaJunk/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV2V3Interface.sol",
     "exportedSymbols": {
       "AggregatorInterface": [
-        5367
+        5642
       ],
       "AggregatorV2V3Interface": [
-        4281
+        4556
       ],
       "AggregatorV3Interface": [
-        3589
+        3872
       ]
     },
-    "id": 4282,
+    "id": 4557,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4274,
+        "id": 4549,
         "literals": [
           "solidity",
           ">=",
@@ -275,11 +275,11 @@
       {
         "absolutePath": "/Users/JustaJunk/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorInterface.sol",
         "file": "./AggregatorInterface.sol",
-        "id": 4275,
+        "id": 4550,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 4282,
-        "sourceUnit": 5368,
+        "scope": 4557,
+        "sourceUnit": 5643,
         "src": "58:35:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -287,11 +287,11 @@
       {
         "absolutePath": "/Users/JustaJunk/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol",
         "file": "./AggregatorV3Interface.sol",
-        "id": 4276,
+        "id": 4551,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 4282,
-        "sourceUnit": 3590,
+        "scope": 4557,
+        "sourceUnit": 3873,
         "src": "94:37:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -301,46 +301,46 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 4277,
+              "id": 4552,
               "name": "AggregatorInterface",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 5367,
+              "referencedDeclaration": 5642,
               "src": "170:19:15"
             },
-            "id": 4278,
+            "id": 4553,
             "nodeType": "InheritanceSpecifier",
             "src": "170:19:15"
           },
           {
             "baseName": {
-              "id": 4279,
+              "id": 4554,
               "name": "AggregatorV3Interface",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 3589,
+              "referencedDeclaration": 3872,
               "src": "191:21:15"
             },
-            "id": 4280,
+            "id": 4555,
             "nodeType": "InheritanceSpecifier",
             "src": "191:21:15"
           }
         ],
         "contractDependencies": [
-          3589,
-          5367
+          3872,
+          5642
         ],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 4281,
+        "id": 4556,
         "linearizedBaseContracts": [
-          4281,
-          3589,
-          5367
+          4556,
+          3872,
+          5642
         ],
         "name": "AggregatorV2V3Interface",
         "nameLocation": "143:23:15",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 4282,
+        "scope": 4557,
         "src": "133:83:15"
       }
     ],
