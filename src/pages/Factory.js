@@ -280,7 +280,6 @@ export default function Dapp() {
     }
 
 
-    console.log("minionList:",minionList)
     return (
         <>
             <div className={classes.root}>

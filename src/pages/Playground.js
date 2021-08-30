@@ -77,7 +77,7 @@ export default function Playground() {
     useEffect(() => {
         const loadInitialContracts = async () => {
             const { chainid } = setting
-            console.log("chainid:", chainid)
+
             let chain = "dev";
             if (chainid <= 42) {
                 chain = chainid.toString()
@@ -106,7 +106,7 @@ export default function Playground() {
         const fetchData = async () => {
             const { accounts } = setting
             if (accounts && contracts.btfdContract) {
-                console.log(accounts)
+
                 await updateLocked()
                 await updateProposals()
                 await updateGeneration()
@@ -114,7 +114,7 @@ export default function Playground() {
             }
         }
         fetchData()
-        console.log('refetech')
+
     }, [contracts])
 
     const loadContract = async (chain, contractName, which) => {
@@ -255,7 +255,7 @@ export default function Playground() {
             return await contracts.faunaContract.methods.getMinionProfile(mid).call()
         }
     }
-    console.log('fields', fields)
+
     return ( 
         <>
             <div >
