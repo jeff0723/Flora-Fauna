@@ -465,7 +465,7 @@
         "src": "32:23:2"
       },
       {
-        "absolutePath": "/Users/JustaJunk/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.0.0/contracts/token/ERC721/IERC721.sol",
+        "absolutePath": "C:/Users/justa/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.0.0/contracts/token/ERC721/IERC721.sol",
         "file": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "id": 2,
         "nameLocation": "-1:-1:-1",

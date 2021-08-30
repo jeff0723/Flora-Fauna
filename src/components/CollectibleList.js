@@ -84,6 +84,7 @@ export default function CollectibleList(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  console.log("List: ",list)
   return (
 
     <div>
