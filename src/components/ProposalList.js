@@ -130,7 +130,7 @@ export default function ProposalList({ locked, onPropose, onStartVote, onEndVote
                                 votes={parseInt(item.votes)}
                                 onVote={onVote} />
                             </Box>
-                        )):<><Typography>No proposal now submit proposol</Typography></>
+                        )):<><Typography >No proposal now, submit a proposol !</Typography></>
                     }
                 </Box>
             </Container>
