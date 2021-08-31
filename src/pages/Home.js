@@ -238,7 +238,7 @@ export default function Home() {
             <Divider />
             <Box style={{ textAlign: 'center', marginTop: 50, marginBottom: 50 }}>
                 <Typography variant='h6' className={classes.footer}>Contact: jeffreylin0723@gmail.com</Typography>
-                <Typography variant='h6' className={classes.footer}>Github:  <a href="https://github.com/jeff0723/Flora-Fauna" target="_blank">Flora-Fauna</a></Typography>
+                <Typography variant='h6' className={classes.footer}>Github:  <a href="https://github.com/JustaJunk/Flora-and-Fauna" rel='noreferrer' target="_blank">Flora-Fauna</a></Typography>
 
                 <Typography variant='body' style={{ color: 'grey' }}>{"Copyright © "}</Typography>
 
