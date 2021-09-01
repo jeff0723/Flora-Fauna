@@ -12,12 +12,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../assets/image/Logo.png'
 import { Link } from "react-router-dom";
 
-import { AppBar, Toolbar, CssBaseline  } from '@material-ui/core'
+import { AppBar, Toolbar, CssBaseline } from '@material-ui/core'
 const useStyles = makeStyles((theme) => ({
     root: {
         background: `url(${redPlayground})`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition:'50% 50%',
+        backgroundPosition: '50% 50%',
         backgroundSize: "100% 100%",
 
     },
@@ -249,48 +249,48 @@ export default function Playground() {
 
     const getMinionProfile = async (isFlora, mid) => {
         if (isFlora) {
-            return await contracts.floraContract.methods.getMinionProfile(mid).call() 
+            return await contracts.floraContract.methods.getMinionProfile(mid).call()
         }
         else {
             return await contracts.faunaContract.methods.getMinionProfile(mid).call()
         }
     }
 
-    return ( 
+    return (
         <>
             <div >
-                <AppBar style={{ background: "#FFFFFF", boxShadow: 'none',borderBottom:'1px solid rgba(0, 0, 0, 0.125)'}}>
+                <AppBar style={{ background: "#FFFFFF", boxShadow: 'none', borderBottom: '1px solid rgba(0, 0, 0, 0.125)' }}>
                     <Toolbar>
                         <Container maxWidth='xl'>
-                        <Box display="flex" flexDirection="row" justifyContent="space-between" >
-                            <Box >
-                            <Button component={Link} to="/">
-                            <img src={Logo} className={classes.logo} />
-                        </Button>
+                            <Box display="flex" flexDirection="row" justifyContent="space-between" >
+                                <Box >
+                                    <Button component={Link} to="/">
+                                        <img src={Logo} className={classes.logo} />
+                                    </Button>
+                                </Box>
+                                <Box >
+                                    <Button
+                                        variant='outlined'
+                                        className={classes.button}
+                                        style={{
+                                            marginTop: 20, marginRight: 30, textTransform: 'none', fontSize: 16, fontWeight: 'bold'
+                                        }}
+                                        component={Link} to="/Factory"
+                                    >
+                                        Factory
+                                    </Button>
+                                    <Button
+                                        variant='outlined'
+                                        className={classes.button}
+                                        style={{
+                                            marginTop: 20, textTransform: 'none', fontSize: 16, fontWeight: 'bold'
+                                        }}
+                                        href="https://docs.google.com/document/d/1AwX-eP3bZ_XL-YBK7c2zRt0PAFiJFwo-sstIe6dzVns/edit?usp=sharing" target="_blank"
+                                    >
+                                        WhitePaper
+                                    </Button>
+                                </Box>
                             </Box>
-                            <Box >
-                                <Button 
-                                    variant='outlined'
-                                    className={classes.button}
-                                    style={{
-                                        marginTop:20,marginRight:30,textTransform:'none',fontSize:16,fontWeight:'bold'
-                                    }}
-                                    component={Link} to="/Factory"
-                                >
-                                    Factory
-                                </Button>
-                                <Button 
-                                    variant='outlined'
-                                    className={classes.button}
-                                    style={{
-                                        marginTop:20,textTransform:'none',fontSize:16,fontWeight:'bold'
-                                    }}
-                                    href="https://docs.google.com/document/d/1AwX-eP3bZ_XL-YBK7c2zRt0PAFiJFwo-sstIe6dzVns/edit?usp=sharing" target="_blank"
-                                >
-                                    WhitePaper
-                                </Button>
-                            </Box>
-                        </Box>
                         </Container>
                     </Toolbar>
                 </AppBar>
