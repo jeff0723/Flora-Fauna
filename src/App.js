@@ -3,7 +3,7 @@ import { Route, Switch, BrowserRouter as Router, } from 'react-router-dom';
 import Factory from './pages/Factory'
 import Prototype from './Prototype'
 import Home from './pages/Home'
-import BattlefieldOld from "./pages/Playground";
+import BattlefieldOld from "./pages/BattlefieldOld";
 import Playground from "./pages/Playground";
 export default function App() {
     return (
