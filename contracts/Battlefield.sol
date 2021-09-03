@@ -142,11 +142,13 @@ contract Battlefield is BattleBase, ERC721URIStorage {
     function vote(uint fieldID, uint proposalID) external voteState {
         require(
             fieldGeneration[fieldID] < generation,
-            "Battlefield: field has voted in this generation");
+            "Battlefield: field has voted in this generation"
+            );
         uint[] memory defender = fieldDefender[fieldID];
         require(
             defender.length > 0,
-            "Battlefield: empty field can't vote");
+            "Battlefield: empty field can't vote"
+            );
         if (isFloraField[fieldID]) {
             require(
                 floraArmy.ownerOf(defender[0]) == msg.sender,
