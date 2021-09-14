@@ -22,24 +22,53 @@ import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 
 interface ArmyRankInterface extends ethers.utils.Interface {
   functions: {
-    "branchPrefix(address)": FunctionFragment;
-    "changeJsonNames(string[5])": FunctionFragment;
+    "approve(address,uint256)": FunctionFragment;
+    "balanceOf(address)": FunctionFragment;
+    "baseURI()": FunctionFragment;
+    "changeMetadataNames(string[5])": FunctionFragment;
     "changePowerLevels(int256[5])": FunctionFragment;
-    "jsonNames(uint256)": FunctionFragment;
+    "enhancerContract()": FunctionFragment;
+    "ens()": FunctionFragment;
+    "getApproved(uint256)": FunctionFragment;
+    "getMinionIDs(address)": FunctionFragment;
+    "getMinionInfo(uint256)": FunctionFragment;
+    "getMinionProfile(uint256)": FunctionFragment;
+    "getTeamProfile(uint256[])": FunctionFragment;
+    "grant(uint256)": FunctionFragment;
+    "initPower()": FunctionFragment;
+    "isApprovedForAll(address,address)": FunctionFragment;
+    "liberate(uint256)": FunctionFragment;
+    "metadataNames(uint256)": FunctionFragment;
+    "minionExists(uint256)": FunctionFragment;
+    "minions(uint256)": FunctionFragment;
+    "name()": FunctionFragment;
     "owner()": FunctionFragment;
+    "ownerOf(uint256)": FunctionFragment;
     "powerLevels(uint256)": FunctionFragment;
-    "query(address,int256)": FunctionFragment;
+    "recruit(bytes32)": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
+    "safeTransferFrom(address,address,uint256)": FunctionFragment;
+    "serialNumber()": FunctionFragment;
+    "setApprovalForAll(address,bool)": FunctionFragment;
+    "supportsInterface(bytes4)": FunctionFragment;
+    "symbol()": FunctionFragment;
+    "tokenByIndex(uint256)": FunctionFragment;
+    "tokenOfOwnerByIndex(address,uint256)": FunctionFragment;
+    "tokenURI(uint256)": FunctionFragment;
+    "totalSupply()": FunctionFragment;
+    "transferFrom(address,address,uint256)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
-    "updateBranchPrefix(address,string)": FunctionFragment;
+    "updateBaseURI(string)": FunctionFragment;
   };
 
   encodeFunctionData(
-    functionFragment: "branchPrefix",
-    values: [string]
+    functionFragment: "approve",
+    values: [string, BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+  encodeFunctionData(functionFragment: "baseURI", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "changeJsonNames",
+    functionFragment: "changeMetadataNames",
     values: [[string, string, string, string, string]]
   ): string;
   encodeFunctionData(
@@ -49,52 +78,209 @@ interface ArmyRankInterface extends ethers.utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "jsonNames",
+    functionFragment: "enhancerContract",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "ens", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "getApproved",
     values: [BigNumberish]
   ): string;
+  encodeFunctionData(
+    functionFragment: "getMinionIDs",
+    values: [string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getMinionInfo",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getMinionProfile",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getTeamProfile",
+    values: [BigNumberish[]]
+  ): string;
+  encodeFunctionData(functionFragment: "grant", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: "initPower", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "isApprovedForAll",
+    values: [string, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "liberate",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "metadataNames",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "minionExists",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "minions",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "ownerOf",
+    values: [BigNumberish]
+  ): string;
   encodeFunctionData(
     functionFragment: "powerLevels",
     values: [BigNumberish]
   ): string;
-  encodeFunctionData(
-    functionFragment: "query",
-    values: [string, BigNumberish]
-  ): string;
+  encodeFunctionData(functionFragment: "recruit", values: [BytesLike]): string;
   encodeFunctionData(
     functionFragment: "renounceOwnership",
     values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "safeTransferFrom",
+    values: [string, string, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "serialNumber",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setApprovalForAll",
+    values: [string, boolean]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "supportsInterface",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "tokenByIndex",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenOfOwnerByIndex",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenURI",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalSupply",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transferFrom",
+    values: [string, string, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "transferOwnership",
     values: [string]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateBranchPrefix",
-    values: [string, string]
+    functionFragment: "updateBaseURI",
+    values: [string]
   ): string;
 
+  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "baseURI", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "branchPrefix",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "changeJsonNames",
+    functionFragment: "changeMetadataNames",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "changePowerLevels",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "jsonNames", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "enhancerContract",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "ens", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getApproved",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getMinionIDs",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getMinionInfo",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getMinionProfile",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getTeamProfile",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "grant", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "initPower", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "isApprovedForAll",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "liberate", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "metadataNames",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "minionExists",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "minions", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "powerLevels",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "query", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "recruit", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "safeTransferFrom",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "serialNumber",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setApprovalForAll",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "supportsInterface",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenByIndex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenOfOwnerByIndex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "totalSupply",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "transferFrom",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -102,15 +288,23 @@ interface ArmyRankInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updateBranchPrefix",
+    functionFragment: "updateBaseURI",
     data: BytesLike
   ): Result;
 
   events: {
+    "Approval(address,address,uint256)": EventFragment;
+    "ApprovalForAll(address,address,bool)": EventFragment;
+    "MinionState(uint256,address,bool,int256,int256)": EventFragment;
     "OwnershipTransferred(address,address)": EventFragment;
+    "Transfer(address,address,uint256)": EventFragment;
   };
 
+  getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "MinionState"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
 }
 
 export class ArmyRank extends Contract {
@@ -127,27 +321,47 @@ export class ArmyRank extends Contract {
   interface: ArmyRankInterface;
 
   functions: {
-    branchPrefix(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-    }>;
-
-    "branchPrefix(address)"(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-    }>;
-
-    changeJsonNames(
-      jsonNames_: [string, string, string, string, string],
+    approve(
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    "changeJsonNames(string[5])"(
-      jsonNames_: [string, string, string, string, string],
+    "approve(address,uint256)"(
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    balanceOf(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    "balanceOf(address)"(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    baseURI(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    changeMetadataNames(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "changeMetadataNames(string[5])"(
+      metadataNames_: [string, string, string, string, string],
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -173,17 +387,297 @@ export class ArmyRank extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    jsonNames(
+    enhancerContract(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    "enhancerContract()"(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    ens(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    "ens()"(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    getApproved(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
+    "getApproved(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
+    getMinionIDs(
+      commander: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      minionIDs: BigNumber[];
+      0: BigNumber[];
+    }>;
+
+    "getMinionIDs(address)"(
+      commander: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      minionIDs: BigNumber[];
+      0: BigNumber[];
+    }>;
+
+    getMinionInfo(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+    }>;
+
+    "getMinionInfo(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+    }>;
+
+    getMinionProfile(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      profile: {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      };
+      0: {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      };
+    }>;
+
+    "getMinionProfile(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      profile: {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      };
+      0: {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      };
+    }>;
+
+    getTeamProfile(
+      minionIDs: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<{
+      teamProfile: {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      }[];
+      0: {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      }[];
+    }>;
+
+    "getTeamProfile(uint256[])"(
+      minionIDs: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<{
+      teamProfile: {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      }[];
+      0: {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      }[];
+    }>;
+
+    grant(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "grant(uint256)"(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    initPower(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
+    }>;
+
+    "initPower()"(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
+    }>;
+
+    isApprovedForAll(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
+    "isApprovedForAll(address,address)"(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
+    liberate(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "liberate(uint256)"(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    metadataNames(
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<{
       0: string;
     }>;
 
-    "jsonNames(uint256)"(
+    "metadataNames(uint256)"(
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<{
+      0: string;
+    }>;
+
+    minionExists(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
+    "minionExists(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
+    minions(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      branchAddr: string;
+      armed: boolean;
+      envFactor: BigNumber;
+      power: BigNumber;
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+    }>;
+
+    "minions(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      branchAddr: string;
+      armed: boolean;
+      envFactor: BigNumber;
+      power: BigNumber;
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+    }>;
+
+    name(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    "name()"(overrides?: CallOverrides): Promise<{
       0: string;
     }>;
 
@@ -192,6 +686,20 @@ export class ArmyRank extends Contract {
     }>;
 
     "owner()"(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    ownerOf(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
+    "ownerOf(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
       0: string;
     }>;
 
@@ -209,27 +717,142 @@ export class ArmyRank extends Contract {
       0: BigNumber;
     }>;
 
-    query(
-      branchAddr: string,
-      power: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      uriPrefix: string;
-      0: string;
-    }>;
+    recruit(
+      branchHash: BytesLike,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
 
-    "query(address,int256)"(
-      branchAddr: string,
-      power: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      uriPrefix: string;
-      0: string;
-    }>;
+    "recruit(bytes32)"(
+      branchHash: BytesLike,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
 
     renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
     "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
+
+    "safeTransferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "safeTransferFrom(address,address,uint256,bytes)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      _data: BytesLike,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    serialNumber(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
+    }>;
+
+    "serialNumber()"(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
+    }>;
+
+    setApprovalForAll(
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "setApprovalForAll(address,bool)"(
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
+    "supportsInterface(bytes4)"(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
+    symbol(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    "symbol()"(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    tokenURI(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
+    "tokenURI(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
+    totalSupply(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
+    }>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
+    }>;
+
+    transferFrom(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "transferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
 
     transferOwnership(
       newOwner: string,
@@ -241,33 +864,47 @@ export class ArmyRank extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    updateBranchPrefix(
-      branchAddr: string,
-      prefix: string,
+    updateBaseURI(
+      baseURI_: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    "updateBranchPrefix(address,string)"(
-      branchAddr: string,
-      prefix: string,
+    "updateBaseURI(string)"(
+      baseURI_: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
   };
 
-  branchPrefix(arg0: string, overrides?: CallOverrides): Promise<string>;
-
-  "branchPrefix(address)"(
-    arg0: string,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  changeJsonNames(
-    jsonNames_: [string, string, string, string, string],
+  approve(
+    to: string,
+    tokenId: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  "changeJsonNames(string[5])"(
-    jsonNames_: [string, string, string, string, string],
+  "approve(address,uint256)"(
+    to: string,
+    tokenId: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+  "balanceOf(address)"(
+    owner: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  baseURI(overrides?: CallOverrides): Promise<string>;
+
+  "baseURI()"(overrides?: CallOverrides): Promise<string>;
+
+  changeMetadataNames(
+    metadataNames_: [string, string, string, string, string],
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "changeMetadataNames(string[5])"(
+    metadataNames_: [string, string, string, string, string],
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -293,16 +930,217 @@ export class ArmyRank extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  jsonNames(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+  enhancerContract(overrides?: CallOverrides): Promise<string>;
 
-  "jsonNames(uint256)"(
+  "enhancerContract()"(overrides?: CallOverrides): Promise<string>;
+
+  ens(overrides?: CallOverrides): Promise<string>;
+
+  "ens()"(overrides?: CallOverrides): Promise<string>;
+
+  getApproved(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  "getApproved(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  getMinionIDs(
+    commander: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber[]>;
+
+  "getMinionIDs(address)"(
+    commander: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber[]>;
+
+  getMinionInfo(
+    minionID: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<{
+    0: string;
+    1: boolean;
+    2: BigNumber;
+    3: BigNumber;
+  }>;
+
+  "getMinionInfo(uint256)"(
+    minionID: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<{
+    0: string;
+    1: boolean;
+    2: BigNumber;
+    3: BigNumber;
+  }>;
+
+  getMinionProfile(
+    minionID: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<{
+    branch: string;
+    armed: boolean;
+    price: BigNumber;
+    power: BigNumber;
+    uri: string;
+    0: string;
+    1: boolean;
+    2: BigNumber;
+    3: BigNumber;
+    4: string;
+  }>;
+
+  "getMinionProfile(uint256)"(
+    minionID: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<{
+    branch: string;
+    armed: boolean;
+    price: BigNumber;
+    power: BigNumber;
+    uri: string;
+    0: string;
+    1: boolean;
+    2: BigNumber;
+    3: BigNumber;
+    4: string;
+  }>;
+
+  getTeamProfile(
+    minionIDs: BigNumberish[],
+    overrides?: CallOverrides
+  ): Promise<
+    {
+      branch: string;
+      armed: boolean;
+      price: BigNumber;
+      power: BigNumber;
+      uri: string;
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+      4: string;
+    }[]
+  >;
+
+  "getTeamProfile(uint256[])"(
+    minionIDs: BigNumberish[],
+    overrides?: CallOverrides
+  ): Promise<
+    {
+      branch: string;
+      armed: boolean;
+      price: BigNumber;
+      power: BigNumber;
+      uri: string;
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+      4: string;
+    }[]
+  >;
+
+  grant(
+    minionID: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "grant(uint256)"(
+    minionID: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  initPower(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "initPower()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+  isApprovedForAll(
+    owner: string,
+    operator: string,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
+  "isApprovedForAll(address,address)"(
+    owner: string,
+    operator: string,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
+  liberate(
+    minionID: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "liberate(uint256)"(
+    minionID: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  metadataNames(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+  "metadataNames(uint256)"(
     arg0: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
 
+  minionExists(
+    minionID: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
+  "minionExists(uint256)"(
+    minionID: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
+  minions(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<{
+    branchAddr: string;
+    armed: boolean;
+    envFactor: BigNumber;
+    power: BigNumber;
+    0: string;
+    1: boolean;
+    2: BigNumber;
+    3: BigNumber;
+  }>;
+
+  "minions(uint256)"(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<{
+    branchAddr: string;
+    armed: boolean;
+    envFactor: BigNumber;
+    power: BigNumber;
+    0: string;
+    1: boolean;
+    2: BigNumber;
+    3: BigNumber;
+  }>;
+
+  name(overrides?: CallOverrides): Promise<string>;
+
+  "name()"(overrides?: CallOverrides): Promise<string>;
+
   owner(overrides?: CallOverrides): Promise<string>;
 
   "owner()"(overrides?: CallOverrides): Promise<string>;
+
+  ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+  "ownerOf(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   powerLevels(
     arg0: BigNumberish,
@@ -314,21 +1152,111 @@ export class ArmyRank extends Contract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  query(
-    branchAddr: string,
-    power: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
+  recruit(
+    branchHash: BytesLike,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
 
-  "query(address,int256)"(
-    branchAddr: string,
-    power: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
+  "recruit(bytes32)"(
+    branchHash: BytesLike,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
 
   renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
   "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
+
+  "safeTransferFrom(address,address,uint256)"(
+    from: string,
+    to: string,
+    tokenId: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "safeTransferFrom(address,address,uint256,bytes)"(
+    from: string,
+    to: string,
+    tokenId: BigNumberish,
+    _data: BytesLike,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  serialNumber(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "serialNumber()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+  setApprovalForAll(
+    operator: string,
+    approved: boolean,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "setApprovalForAll(address,bool)"(
+    operator: string,
+    approved: boolean,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  supportsInterface(
+    interfaceId: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
+  "supportsInterface(bytes4)"(
+    interfaceId: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
+  symbol(overrides?: CallOverrides): Promise<string>;
+
+  "symbol()"(overrides?: CallOverrides): Promise<string>;
+
+  tokenByIndex(
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "tokenByIndex(uint256)"(
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  tokenOfOwnerByIndex(
+    owner: string,
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "tokenOfOwnerByIndex(address,uint256)"(
+    owner: string,
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  tokenURI(minionID: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+  "tokenURI(uint256)"(
+    minionID: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+  transferFrom(
+    from: string,
+    to: string,
+    tokenId: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "transferFrom(address,address,uint256)"(
+    from: string,
+    to: string,
+    tokenId: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
 
   transferOwnership(
     newOwner: string,
@@ -340,33 +1268,47 @@ export class ArmyRank extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  updateBranchPrefix(
-    branchAddr: string,
-    prefix: string,
+  updateBaseURI(
+    baseURI_: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  "updateBranchPrefix(address,string)"(
-    branchAddr: string,
-    prefix: string,
+  "updateBaseURI(string)"(
+    baseURI_: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    branchPrefix(arg0: string, overrides?: CallOverrides): Promise<string>;
-
-    "branchPrefix(address)"(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    changeJsonNames(
-      jsonNames_: [string, string, string, string, string],
+    approve(
+      to: string,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "changeJsonNames(string[5])"(
-      jsonNames_: [string, string, string, string, string],
+    "approve(address,uint256)"(
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "balanceOf(address)"(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    baseURI(overrides?: CallOverrides): Promise<string>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<string>;
+
+    changeMetadataNames(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "changeMetadataNames(string[5])"(
+      metadataNames_: [string, string, string, string, string],
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -392,16 +1334,214 @@ export class ArmyRank extends Contract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    jsonNames(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+    enhancerContract(overrides?: CallOverrides): Promise<string>;
 
-    "jsonNames(uint256)"(
+    "enhancerContract()"(overrides?: CallOverrides): Promise<string>;
+
+    ens(overrides?: CallOverrides): Promise<string>;
+
+    "ens()"(overrides?: CallOverrides): Promise<string>;
+
+    getApproved(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "getApproved(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    getMinionIDs(
+      commander: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber[]>;
+
+    "getMinionIDs(address)"(
+      commander: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber[]>;
+
+    getMinionInfo(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+    }>;
+
+    "getMinionInfo(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+    }>;
+
+    getMinionProfile(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      branch: string;
+      armed: boolean;
+      price: BigNumber;
+      power: BigNumber;
+      uri: string;
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+      4: string;
+    }>;
+
+    "getMinionProfile(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      branch: string;
+      armed: boolean;
+      price: BigNumber;
+      power: BigNumber;
+      uri: string;
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+      4: string;
+    }>;
+
+    getTeamProfile(
+      minionIDs: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<
+      {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      }[]
+    >;
+
+    "getTeamProfile(uint256[])"(
+      minionIDs: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<
+      {
+        branch: string;
+        armed: boolean;
+        price: BigNumber;
+        power: BigNumber;
+        uri: string;
+        0: string;
+        1: boolean;
+        2: BigNumber;
+        3: BigNumber;
+        4: string;
+      }[]
+    >;
+
+    grant(minionID: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    "grant(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    initPower(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "initPower()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    isApprovedForAll(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    "isApprovedForAll(address,address)"(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    liberate(minionID: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    "liberate(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    metadataNames(
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
 
+    "metadataNames(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    minionExists(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    "minionExists(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    minions(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      branchAddr: string;
+      armed: boolean;
+      envFactor: BigNumber;
+      power: BigNumber;
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+    }>;
+
+    "minions(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      branchAddr: string;
+      armed: boolean;
+      envFactor: BigNumber;
+      power: BigNumber;
+      0: string;
+      1: boolean;
+      2: BigNumber;
+      3: BigNumber;
+    }>;
+
+    name(overrides?: CallOverrides): Promise<string>;
+
+    "name()"(overrides?: CallOverrides): Promise<string>;
+
     owner(overrides?: CallOverrides): Promise<string>;
 
     "owner()"(overrides?: CallOverrides): Promise<string>;
+
+    ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+    "ownerOf(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     powerLevels(
       arg0: BigNumberish,
@@ -413,21 +1553,114 @@ export class ArmyRank extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    query(
-      branchAddr: string,
-      power: BigNumberish,
+    recruit(
+      branchHash: BytesLike,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<BigNumber>;
 
-    "query(address,int256)"(
-      branchAddr: string,
-      power: BigNumberish,
+    "recruit(bytes32)"(
+      branchHash: BytesLike,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<BigNumber>;
 
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
     "renounceOwnership()"(overrides?: CallOverrides): Promise<void>;
+
+    "safeTransferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "safeTransferFrom(address,address,uint256,bytes)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      _data: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    serialNumber(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "serialNumber()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    setApprovalForAll(
+      operator: string,
+      approved: boolean,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "setApprovalForAll(address,bool)"(
+      operator: string,
+      approved: boolean,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    "supportsInterface(bytes4)"(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    symbol(overrides?: CallOverrides): Promise<string>;
+
+    "symbol()"(overrides?: CallOverrides): Promise<string>;
+
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenURI(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "tokenURI(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    transferFrom(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "transferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     transferOwnership(
       newOwner: string,
@@ -439,41 +1672,78 @@ export class ArmyRank extends Contract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    updateBranchPrefix(
-      branchAddr: string,
-      prefix: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    updateBaseURI(baseURI_: string, overrides?: CallOverrides): Promise<void>;
 
-    "updateBranchPrefix(address,string)"(
-      branchAddr: string,
-      prefix: string,
+    "updateBaseURI(string)"(
+      baseURI_: string,
       overrides?: CallOverrides
     ): Promise<void>;
   };
 
   filters: {
+    Approval(
+      owner: string | null,
+      approved: string | null,
+      tokenId: BigNumberish | null
+    ): EventFilter;
+
+    ApprovalForAll(
+      owner: string | null,
+      operator: string | null,
+      approved: null
+    ): EventFilter;
+
+    MinionState(
+      minionID: BigNumberish | null,
+      branchAddress: string | null,
+      armed: boolean | null,
+      environmentFactor: null,
+      power: null
+    ): EventFilter;
+
     OwnershipTransferred(
       previousOwner: string | null,
       newOwner: string | null
     ): EventFilter;
+
+    Transfer(
+      from: string | null,
+      to: string | null,
+      tokenId: BigNumberish | null
+    ): EventFilter;
   };
 
   estimateGas: {
-    branchPrefix(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
-
-    "branchPrefix(address)"(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    changeJsonNames(
-      jsonNames_: [string, string, string, string, string],
+    approve(
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    "changeJsonNames(string[5])"(
-      jsonNames_: [string, string, string, string, string],
+    "approve(address,uint256)"(
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "balanceOf(address)"(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    baseURI(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    changeMetadataNames(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "changeMetadataNames(string[5])"(
+      metadataNames_: [string, string, string, string, string],
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -499,19 +1769,138 @@ export class ArmyRank extends Contract {
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    jsonNames(
+    enhancerContract(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "enhancerContract()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    ens(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "ens()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getApproved(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getApproved(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getMinionIDs(
+      commander: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getMinionIDs(address)"(
+      commander: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getMinionInfo(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getMinionInfo(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getMinionProfile(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getMinionProfile(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getTeamProfile(
+      minionIDs: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getTeamProfile(uint256[])"(
+      minionIDs: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    grant(minionID: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
+
+    "grant(uint256)"(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    initPower(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "initPower()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    isApprovedForAll(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "isApprovedForAll(address,address)"(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    liberate(minionID: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
+
+    "liberate(uint256)"(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    metadataNames(
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "jsonNames(uint256)"(
+    "metadataNames(uint256)"(
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    minionExists(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "minionExists(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    minions(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "minions(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    name(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "name()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     owner(overrides?: CallOverrides): Promise<BigNumber>;
 
     "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    ownerOf(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "ownerOf(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     powerLevels(
       arg0: BigNumberish,
@@ -523,22 +1912,112 @@ export class ArmyRank extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    query(
-      branchAddr: string,
-      power: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    recruit(branchHash: BytesLike, overrides?: Overrides): Promise<BigNumber>;
 
-    "query(address,int256)"(
-      branchAddr: string,
-      power: BigNumberish,
-      overrides?: CallOverrides
+    "recruit(bytes32)"(
+      branchHash: BytesLike,
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     renounceOwnership(overrides?: Overrides): Promise<BigNumber>;
 
     "renounceOwnership()"(overrides?: Overrides): Promise<BigNumber>;
 
+    "safeTransferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "safeTransferFrom(address,address,uint256,bytes)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      _data: BytesLike,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    serialNumber(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "serialNumber()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    setApprovalForAll(
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "setApprovalForAll(address,bool)"(
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "supportsInterface(bytes4)"(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    symbol(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "symbol()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenURI(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenURI(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    transferFrom(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "transferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
     transferOwnership(
       newOwner: string,
       overrides?: Overrides
@@ -549,37 +2028,48 @@ export class ArmyRank extends Contract {
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    updateBranchPrefix(
-      branchAddr: string,
-      prefix: string,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
+    updateBaseURI(baseURI_: string, overrides?: Overrides): Promise<BigNumber>;
 
-    "updateBranchPrefix(address,string)"(
-      branchAddr: string,
-      prefix: string,
+    "updateBaseURI(string)"(
+      baseURI_: string,
       overrides?: Overrides
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    branchPrefix(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "branchPrefix(address)"(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    changeJsonNames(
-      jsonNames_: [string, string, string, string, string],
+    approve(
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "changeJsonNames(string[5])"(
-      jsonNames_: [string, string, string, string, string],
+    "approve(address,uint256)"(
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    balanceOf(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "balanceOf(address)"(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    baseURI(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    changeMetadataNames(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "changeMetadataNames(string[5])"(
+      metadataNames_: [string, string, string, string, string],
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
@@ -605,19 +2095,149 @@ export class ArmyRank extends Contract {
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    jsonNames(
+    enhancerContract(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "enhancerContract()"(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    ens(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "ens()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getApproved(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getApproved(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getMinionIDs(
+      commander: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getMinionIDs(address)"(
+      commander: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getMinionInfo(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getMinionInfo(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getMinionProfile(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getMinionProfile(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getTeamProfile(
+      minionIDs: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getTeamProfile(uint256[])"(
+      minionIDs: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    grant(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "grant(uint256)"(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    initPower(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "initPower()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    isApprovedForAll(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "isApprovedForAll(address,address)"(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    liberate(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "liberate(uint256)"(
+      minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    metadataNames(
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "jsonNames(uint256)"(
+    "metadataNames(uint256)"(
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    minionExists(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "minionExists(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    minions(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "minions(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "name()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    ownerOf(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "ownerOf(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     powerLevels(
       arg0: BigNumberish,
@@ -629,21 +2249,114 @@ export class ArmyRank extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    query(
-      branchAddr: string,
-      power: BigNumberish,
-      overrides?: CallOverrides
+    recruit(
+      branchHash: BytesLike,
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "query(address,int256)"(
-      branchAddr: string,
-      power: BigNumberish,
-      overrides?: CallOverrides
+    "recruit(bytes32)"(
+      branchHash: BytesLike,
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     renounceOwnership(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     "renounceOwnership()"(overrides?: Overrides): Promise<PopulatedTransaction>;
+
+    "safeTransferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "safeTransferFrom(address,address,uint256,bytes)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      _data: BytesLike,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    serialNumber(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "serialNumber()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    setApprovalForAll(
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "setApprovalForAll(address,bool)"(
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "supportsInterface(bytes4)"(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "symbol()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    tokenURI(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenURI(uint256)"(
+      minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    transferFrom(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "transferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
 
     transferOwnership(
       newOwner: string,
@@ -655,15 +2368,13 @@ export class ArmyRank extends Contract {
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    updateBranchPrefix(
-      branchAddr: string,
-      prefix: string,
+    updateBaseURI(
+      baseURI_: string,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "updateBranchPrefix(address,string)"(
-      branchAddr: string,
-      prefix: string,
+    "updateBaseURI(string)"(
+      baseURI_: string,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
   };

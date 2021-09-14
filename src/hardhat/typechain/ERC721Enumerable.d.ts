@@ -20,24 +20,15 @@ import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 
-interface ArmyBaseInterface extends ethers.utils.Interface {
+interface ERC721EnumerableInterface extends ethers.utils.Interface {
   functions: {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
-    "enhancerContract()": FunctionFragment;
-    "ens()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
-    "getMinionIDs(address)": FunctionFragment;
-    "getMinionInfo(uint256)": FunctionFragment;
-    "initPower()": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
-    "minionExists(uint256)": FunctionFragment;
-    "minions(uint256)": FunctionFragment;
     "name()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
-    "recruit(bytes32)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
-    "serialNumber()": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
@@ -54,48 +45,21 @@ interface ArmyBaseInterface extends ethers.utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(
-    functionFragment: "enhancerContract",
-    values?: undefined
-  ): string;
-  encodeFunctionData(functionFragment: "ens", values?: undefined): string;
-  encodeFunctionData(
     functionFragment: "getApproved",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getMinionIDs",
-    values: [string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getMinionInfo",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "initPower", values?: undefined): string;
-  encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [string, string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "minionExists",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "minions",
-    values: [BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
     values: [BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "recruit", values: [BytesLike]): string;
   encodeFunctionData(
     functionFragment: "safeTransferFrom",
     values: [string, string, BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "serialNumber",
-    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "setApprovalForAll",
@@ -130,41 +94,17 @@ interface ArmyBaseInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "enhancerContract",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "ens", data: BytesLike): Result;
-  decodeFunctionResult(
     functionFragment: "getApproved",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getMinionIDs",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getMinionInfo",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "initPower", data: BytesLike): Result;
-  decodeFunctionResult(
     functionFragment: "isApprovedForAll",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "minionExists",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "minions", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "recruit", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "safeTransferFrom",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "serialNumber",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -197,17 +137,15 @@ interface ArmyBaseInterface extends ethers.utils.Interface {
   events: {
     "Approval(address,address,uint256)": EventFragment;
     "ApprovalForAll(address,address,bool)": EventFragment;
-    "MinionState(uint256,address,bool,int256,int256)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "MinionState"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
 }
 
-export class ArmyBase extends Contract {
+export class ERC721Enumerable extends Contract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -218,7 +156,7 @@ export class ArmyBase extends Contract {
   removeAllListeners(eventName: EventFilter | string): this;
   removeListener(eventName: any, listener: Listener): this;
 
-  interface: ArmyBaseInterface;
+  interface: ERC721EnumerableInterface;
 
   functions: {
     approve(
@@ -247,22 +185,6 @@ export class ArmyBase extends Contract {
       0: BigNumber;
     }>;
 
-    enhancerContract(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
-    "enhancerContract()"(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
-    ens(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
-    "ens()"(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -275,50 +197,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<{
       0: string;
-    }>;
-
-    getMinionIDs(
-      commander: string,
-      overrides?: CallOverrides
-    ): Promise<{
-      minionIDs: BigNumber[];
-      0: BigNumber[];
-    }>;
-
-    "getMinionIDs(address)"(
-      commander: string,
-      overrides?: CallOverrides
-    ): Promise<{
-      minionIDs: BigNumber[];
-      0: BigNumber[];
-    }>;
-
-    getMinionInfo(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    "getMinionInfo(uint256)"(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    initPower(overrides?: CallOverrides): Promise<{
-      0: BigNumber;
-    }>;
-
-    "initPower()"(overrides?: CallOverrides): Promise<{
-      0: BigNumber;
     }>;
 
     isApprovedForAll(
@@ -335,48 +213,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<{
       0: boolean;
-    }>;
-
-    minionExists(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: boolean;
-    }>;
-
-    "minionExists(uint256)"(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: boolean;
-    }>;
-
-    minions(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      branchAddr: string;
-      armed: boolean;
-      envFactor: BigNumber;
-      power: BigNumber;
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    "minions(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      branchAddr: string;
-      armed: boolean;
-      envFactor: BigNumber;
-      power: BigNumber;
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
     }>;
 
     name(overrides?: CallOverrides): Promise<{
@@ -401,16 +237,6 @@ export class ArmyBase extends Contract {
       0: string;
     }>;
 
-    recruit(
-      branchHash: BytesLike,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "recruit(bytes32)"(
-      branchHash: BytesLike,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
     "safeTransferFrom(address,address,uint256)"(
       from: string,
       to: string,
@@ -425,14 +251,6 @@ export class ArmyBase extends Contract {
       _data: BytesLike,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
-
-    serialNumber(overrides?: CallOverrides): Promise<{
-      0: BigNumber;
-    }>;
-
-    "serialNumber()"(overrides?: CallOverrides): Promise<{
-      0: BigNumber;
-    }>;
 
     setApprovalForAll(
       operator: string,
@@ -554,14 +372,6 @@ export class ArmyBase extends Contract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  enhancerContract(overrides?: CallOverrides): Promise<string>;
-
-  "enhancerContract()"(overrides?: CallOverrides): Promise<string>;
-
-  ens(overrides?: CallOverrides): Promise<string>;
-
-  "ens()"(overrides?: CallOverrides): Promise<string>;
-
   getApproved(
     tokenId: BigNumberish,
     overrides?: CallOverrides
@@ -571,40 +381,6 @@ export class ArmyBase extends Contract {
     tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
-
-  getMinionIDs(
-    commander: string,
-    overrides?: CallOverrides
-  ): Promise<BigNumber[]>;
-
-  "getMinionIDs(address)"(
-    commander: string,
-    overrides?: CallOverrides
-  ): Promise<BigNumber[]>;
-
-  getMinionInfo(
-    minionID: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<{
-    0: string;
-    1: boolean;
-    2: BigNumber;
-    3: BigNumber;
-  }>;
-
-  "getMinionInfo(uint256)"(
-    minionID: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<{
-    0: string;
-    1: boolean;
-    2: BigNumber;
-    3: BigNumber;
-  }>;
-
-  initPower(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "initPower()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   isApprovedForAll(
     owner: string,
@@ -618,44 +394,6 @@ export class ArmyBase extends Contract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  minionExists(
-    minionID: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  "minionExists(uint256)"(
-    minionID: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  minions(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<{
-    branchAddr: string;
-    armed: boolean;
-    envFactor: BigNumber;
-    power: BigNumber;
-    0: string;
-    1: boolean;
-    2: BigNumber;
-    3: BigNumber;
-  }>;
-
-  "minions(uint256)"(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<{
-    branchAddr: string;
-    armed: boolean;
-    envFactor: BigNumber;
-    power: BigNumber;
-    0: string;
-    1: boolean;
-    2: BigNumber;
-    3: BigNumber;
-  }>;
-
   name(overrides?: CallOverrides): Promise<string>;
 
   "name()"(overrides?: CallOverrides): Promise<string>;
@@ -666,16 +404,6 @@ export class ArmyBase extends Contract {
     tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
-
-  recruit(
-    branchHash: BytesLike,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  "recruit(bytes32)"(
-    branchHash: BytesLike,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
 
   "safeTransferFrom(address,address,uint256)"(
     from: string,
@@ -691,10 +419,6 @@ export class ArmyBase extends Contract {
     _data: BytesLike,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
-
-  serialNumber(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "serialNumber()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   setApprovalForAll(
     operator: string,
@@ -789,14 +513,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    enhancerContract(overrides?: CallOverrides): Promise<string>;
-
-    "enhancerContract()"(overrides?: CallOverrides): Promise<string>;
-
-    ens(overrides?: CallOverrides): Promise<string>;
-
-    "ens()"(overrides?: CallOverrides): Promise<string>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -806,40 +522,6 @@ export class ArmyBase extends Contract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
-
-    getMinionIDs(
-      commander: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber[]>;
-
-    "getMinionIDs(address)"(
-      commander: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber[]>;
-
-    getMinionInfo(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    "getMinionInfo(uint256)"(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    initPower(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "initPower()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     isApprovedForAll(
       owner: string,
@@ -853,44 +535,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    minionExists(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    "minionExists(uint256)"(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    minions(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      branchAddr: string;
-      armed: boolean;
-      envFactor: BigNumber;
-      power: BigNumber;
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    "minions(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      branchAddr: string;
-      armed: boolean;
-      envFactor: BigNumber;
-      power: BigNumber;
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
     name(overrides?: CallOverrides): Promise<string>;
 
     "name()"(overrides?: CallOverrides): Promise<string>;
@@ -901,16 +545,6 @@ export class ArmyBase extends Contract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
-
-    recruit(
-      branchHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "recruit(bytes32)"(
-      branchHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
@@ -926,10 +560,6 @@ export class ArmyBase extends Contract {
       _data: BytesLike,
       overrides?: CallOverrides
     ): Promise<void>;
-
-    serialNumber(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "serialNumber()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     setApprovalForAll(
       operator: string,
@@ -1018,14 +648,6 @@ export class ArmyBase extends Contract {
       approved: null
     ): EventFilter;
 
-    MinionState(
-      minionID: BigNumberish | null,
-      branchAddress: string | null,
-      armed: boolean | null,
-      environmentFactor: null,
-      power: null
-    ): EventFilter;
-
     Transfer(
       from: string | null,
       to: string | null,
@@ -1053,14 +675,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    enhancerContract(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "enhancerContract()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    ens(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "ens()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1071,30 +685,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getMinionIDs(
-      commander: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "getMinionIDs(address)"(
-      commander: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getMinionInfo(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "getMinionInfo(uint256)"(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    initPower(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "initPower()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     isApprovedForAll(
       owner: string,
       operator: string,
@@ -1104,23 +694,6 @@ export class ArmyBase extends Contract {
     "isApprovedForAll(address,address)"(
       owner: string,
       operator: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    minionExists(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "minionExists(uint256)"(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    minions(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-
-    "minions(uint256)"(
-      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -1138,13 +711,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    recruit(branchHash: BytesLike, overrides?: Overrides): Promise<BigNumber>;
-
-    "recruit(bytes32)"(
-      branchHash: BytesLike,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
     "safeTransferFrom(address,address,uint256)"(
       from: string,
       to: string,
@@ -1159,10 +725,6 @@ export class ArmyBase extends Contract {
       _data: BytesLike,
       overrides?: Overrides
     ): Promise<BigNumber>;
-
-    serialNumber(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "serialNumber()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     setApprovalForAll(
       operator: string,
@@ -1264,16 +826,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    enhancerContract(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "enhancerContract()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    ens(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "ens()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1284,30 +836,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getMinionIDs(
-      commander: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "getMinionIDs(address)"(
-      commander: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getMinionInfo(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "getMinionInfo(uint256)"(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    initPower(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "initPower()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     isApprovedForAll(
       owner: string,
       operator: string,
@@ -1317,26 +845,6 @@ export class ArmyBase extends Contract {
     "isApprovedForAll(address,address)"(
       owner: string,
       operator: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    minionExists(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "minionExists(uint256)"(
-      minionID: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    minions(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "minions(uint256)"(
-      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -1354,16 +862,6 @@ export class ArmyBase extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    recruit(
-      branchHash: BytesLike,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "recruit(bytes32)"(
-      branchHash: BytesLike,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
     "safeTransferFrom(address,address,uint256)"(
       from: string,
       to: string,
@@ -1378,10 +876,6 @@ export class ArmyBase extends Contract {
       _data: BytesLike,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
-
-    serialNumber(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "serialNumber()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     setApprovalForAll(
       operator: string,

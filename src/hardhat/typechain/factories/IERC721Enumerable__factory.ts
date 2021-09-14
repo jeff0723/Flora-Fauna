@@ -5,11 +5,14 @@
 import { Contract, Signer } from "ethers";
 import { Provider } from "@ethersproject/providers";
 
-import type { ARMY } from "../ARMY";
+import type { IERC721Enumerable } from "../IERC721Enumerable";
 
-export class ARMY__factory {
-  static connect(address: string, signerOrProvider: Signer | Provider): ARMY {
-    return new Contract(address, _abi, signerOrProvider) as ARMY;
+export class IERC721Enumerable__factory {
+  static connect(
+    address: string,
+    signerOrProvider: Signer | Provider
+  ): IERC721Enumerable {
+    return new Contract(address, _abi, signerOrProvider) as IERC721Enumerable;
   }
 }
 
@@ -148,40 +151,6 @@ const _abi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "getMinionInfo",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-      {
-        internalType: "int256",
-        name: "",
-        type: "int256",
-      },
-      {
-        internalType: "int256",
-        name: "",
-        type: "int256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
         internalType: "address",
         name: "owner",
         type: "address",
@@ -193,25 +162,6 @@ const _abi = [
       },
     ],
     name: "isApprovedForAll",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "minionExists",
     outputs: [
       {
         internalType: "bool",
@@ -404,19 +354,6 @@ const _abi = [
       },
     ],
     name: "transferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
-    name: "updateBaseURI",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

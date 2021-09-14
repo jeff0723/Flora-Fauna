@@ -25,34 +25,44 @@ interface FloraArmyInterface extends ethers.utils.Interface {
     "approve(address,uint256)": FunctionFragment;
     "arm(uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
+    "baseURI()": FunctionFragment;
     "boost(uint256)": FunctionFragment;
+    "changeMetadataNames(string[5])": FunctionFragment;
+    "changePowerLevels(int256[5])": FunctionFragment;
     "enhancerContract()": FunctionFragment;
     "ens()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
     "getMinionIDs(address)": FunctionFragment;
     "getMinionInfo(uint256)": FunctionFragment;
     "getMinionProfile(uint256)": FunctionFragment;
-    "getTeamInfo(uint256[])": FunctionFragment;
+    "getTeamProfile(uint256[])": FunctionFragment;
     "grant(uint256)": FunctionFragment;
     "heal(uint256)": FunctionFragment;
     "initPower()": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "liberate(uint256)": FunctionFragment;
+    "metadataNames(uint256)": FunctionFragment;
     "minionExists(uint256)": FunctionFragment;
     "minions(uint256)": FunctionFragment;
     "name()": FunctionFragment;
+    "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
-    "population()": FunctionFragment;
-    "rankContract()": FunctionFragment;
+    "powerLevels(uint256)": FunctionFragment;
     "recruit(bytes32)": FunctionFragment;
+    "renounceOwnership()": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "serialNumber()": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
+    "tokenByIndex(uint256)": FunctionFragment;
+    "tokenOfOwnerByIndex(address,uint256)": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
+    "totalSupply()": FunctionFragment;
     "train(uint256)": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
+    "transferOwnership(address)": FunctionFragment;
+    "updateBaseURI(string)": FunctionFragment;
   };
 
   encodeFunctionData(
@@ -61,7 +71,18 @@ interface FloraArmyInterface extends ethers.utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "arm", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+  encodeFunctionData(functionFragment: "baseURI", values?: undefined): string;
   encodeFunctionData(functionFragment: "boost", values: [BigNumberish]): string;
+  encodeFunctionData(
+    functionFragment: "changeMetadataNames",
+    values: [[string, string, string, string, string]]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "changePowerLevels",
+    values: [
+      [BigNumberish, BigNumberish, BigNumberish, BigNumberish, BigNumberish]
+    ]
+  ): string;
   encodeFunctionData(
     functionFragment: "enhancerContract",
     values?: undefined
@@ -84,7 +105,7 @@ interface FloraArmyInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getTeamInfo",
+    functionFragment: "getTeamProfile",
     values: [BigNumberish[]]
   ): string;
   encodeFunctionData(functionFragment: "grant", values: [BigNumberish]): string;
@@ -99,6 +120,10 @@ interface FloraArmyInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "metadataNames",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "minionExists",
     values: [BigNumberish]
   ): string;
@@ -107,19 +132,20 @@ interface FloraArmyInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
+  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "population",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "rankContract",
-    values?: undefined
+    functionFragment: "powerLevels",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "recruit", values: [BytesLike]): string;
+  encodeFunctionData(
+    functionFragment: "renounceOwnership",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "safeTransferFrom",
     values: [string, string, BigNumberish]
@@ -138,19 +164,48 @@ interface FloraArmyInterface extends ethers.utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "tokenByIndex",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenOfOwnerByIndex",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "tokenURI",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalSupply",
+    values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "train", values: [BigNumberish]): string;
   encodeFunctionData(
     functionFragment: "transferFrom",
     values: [string, string, BigNumberish]
   ): string;
+  encodeFunctionData(
+    functionFragment: "transferOwnership",
+    values: [string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "updateBaseURI",
+    values: [string]
+  ): string;
 
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "arm", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "baseURI", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "boost", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "changeMetadataNames",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "changePowerLevels",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "enhancerContract",
     data: BytesLike
@@ -173,7 +228,7 @@ interface FloraArmyInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getTeamInfo",
+    functionFragment: "getTeamProfile",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "grant", data: BytesLike): Result;
@@ -185,18 +240,26 @@ interface FloraArmyInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "liberate", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "metadataNames",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "minionExists",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "minions", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "population", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "rankContract",
+    functionFragment: "powerLevels",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "recruit", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "renounceOwnership",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "safeTransferFrom",
     data: BytesLike
@@ -214,10 +277,30 @@ interface FloraArmyInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenByIndex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenOfOwnerByIndex",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "totalSupply",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "train", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "transferFrom",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "transferOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "updateBaseURI",
     data: BytesLike
   ): Result;
 
@@ -225,12 +308,14 @@ interface FloraArmyInterface extends ethers.utils.Interface {
     "Approval(address,address,uint256)": EventFragment;
     "ApprovalForAll(address,address,bool)": EventFragment;
     "MinionState(uint256,address,bool,int256,int256)": EventFragment;
+    "OwnershipTransferred(address,address)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "MinionState"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
 }
 
@@ -284,6 +369,14 @@ export class FloraArmy extends Contract {
       0: BigNumber;
     }>;
 
+    baseURI(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
     boost(
       minionID: BigNumberish,
       overrides?: Overrides
@@ -291,6 +384,38 @@ export class FloraArmy extends Contract {
 
     "boost(uint256)"(
       minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    changeMetadataNames(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "changeMetadataNames(string[5])"(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    changePowerLevels(
+      powerLevels_: [
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish
+      ],
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "changePowerLevels(int256[5])"(
+      powerLevels_: [
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish
+      ],
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -420,55 +545,63 @@ export class FloraArmy extends Contract {
       };
     }>;
 
-    getTeamInfo(
+    getTeamProfile(
       minionIDs: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<{
-      teamInfo: {
-        branchAddr: string;
+      teamProfile: {
+        branch: string;
         armed: boolean;
-        envFactor: BigNumber;
+        price: BigNumber;
         power: BigNumber;
+        uri: string;
         0: string;
         1: boolean;
         2: BigNumber;
         3: BigNumber;
+        4: string;
       }[];
       0: {
-        branchAddr: string;
+        branch: string;
         armed: boolean;
-        envFactor: BigNumber;
+        price: BigNumber;
         power: BigNumber;
+        uri: string;
         0: string;
         1: boolean;
         2: BigNumber;
         3: BigNumber;
+        4: string;
       }[];
     }>;
 
-    "getTeamInfo(uint256[])"(
+    "getTeamProfile(uint256[])"(
       minionIDs: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<{
-      teamInfo: {
-        branchAddr: string;
+      teamProfile: {
+        branch: string;
         armed: boolean;
-        envFactor: BigNumber;
+        price: BigNumber;
         power: BigNumber;
+        uri: string;
         0: string;
         1: boolean;
         2: BigNumber;
         3: BigNumber;
+        4: string;
       }[];
       0: {
-        branchAddr: string;
+        branch: string;
         armed: boolean;
-        envFactor: BigNumber;
+        price: BigNumber;
         power: BigNumber;
+        uri: string;
         0: string;
         1: boolean;
         2: BigNumber;
         3: BigNumber;
+        4: string;
       }[];
     }>;
 
@@ -526,6 +659,20 @@ export class FloraArmy extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
+    metadataNames(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
+    "metadataNames(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
     minionExists(
       minionID: BigNumberish,
       overrides?: CallOverrides
@@ -576,6 +723,14 @@ export class FloraArmy extends Contract {
       0: string;
     }>;
 
+    owner(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    "owner()"(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
     ownerOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -590,20 +745,18 @@ export class FloraArmy extends Contract {
       0: string;
     }>;
 
-    population(overrides?: CallOverrides): Promise<{
+    powerLevels(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
       0: BigNumber;
     }>;
 
-    "population()"(overrides?: CallOverrides): Promise<{
+    "powerLevels(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
       0: BigNumber;
-    }>;
-
-    rankContract(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
-    "rankContract()"(overrides?: CallOverrides): Promise<{
-      0: string;
     }>;
 
     recruit(
@@ -615,6 +768,10 @@ export class FloraArmy extends Contract {
       branchHash: BytesLike,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
+
+    renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
+
+    "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
@@ -673,6 +830,36 @@ export class FloraArmy extends Contract {
       0: string;
     }>;
 
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
     tokenURI(
       minionID: BigNumberish,
       overrides?: CallOverrides
@@ -685,6 +872,14 @@ export class FloraArmy extends Contract {
       overrides?: CallOverrides
     ): Promise<{
       0: string;
+    }>;
+
+    totalSupply(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
+    }>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
     }>;
 
     train(
@@ -708,6 +903,26 @@ export class FloraArmy extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    transferOwnership(
+      newOwner: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "transferOwnership(address)"(
+      newOwner: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    updateBaseURI(
+      baseURI_: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "updateBaseURI(string)"(
+      baseURI_: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
   };
@@ -741,6 +956,10 @@ export class FloraArmy extends Contract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
+  baseURI(overrides?: CallOverrides): Promise<string>;
+
+  "baseURI()"(overrides?: CallOverrides): Promise<string>;
+
   boost(
     minionID: BigNumberish,
     overrides?: Overrides
@@ -748,6 +967,38 @@ export class FloraArmy extends Contract {
 
   "boost(uint256)"(
     minionID: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  changeMetadataNames(
+    metadataNames_: [string, string, string, string, string],
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "changeMetadataNames(string[5])"(
+    metadataNames_: [string, string, string, string, string],
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  changePowerLevels(
+    powerLevels_: [
+      BigNumberish,
+      BigNumberish,
+      BigNumberish,
+      BigNumberish,
+      BigNumberish
+    ],
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "changePowerLevels(int256[5])"(
+    powerLevels_: [
+      BigNumberish,
+      BigNumberish,
+      BigNumberish,
+      BigNumberish,
+      BigNumberish
+    ],
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -831,35 +1082,39 @@ export class FloraArmy extends Contract {
     4: string;
   }>;
 
-  getTeamInfo(
+  getTeamProfile(
     minionIDs: BigNumberish[],
     overrides?: CallOverrides
   ): Promise<
     {
-      branchAddr: string;
+      branch: string;
       armed: boolean;
-      envFactor: BigNumber;
+      price: BigNumber;
       power: BigNumber;
+      uri: string;
       0: string;
       1: boolean;
       2: BigNumber;
       3: BigNumber;
+      4: string;
     }[]
   >;
 
-  "getTeamInfo(uint256[])"(
+  "getTeamProfile(uint256[])"(
     minionIDs: BigNumberish[],
     overrides?: CallOverrides
   ): Promise<
     {
-      branchAddr: string;
+      branch: string;
       armed: boolean;
-      envFactor: BigNumber;
+      price: BigNumber;
       power: BigNumber;
+      uri: string;
       0: string;
       1: boolean;
       2: BigNumber;
       3: BigNumber;
+      4: string;
     }[]
   >;
 
@@ -909,6 +1164,13 @@ export class FloraArmy extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
+  metadataNames(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+  "metadataNames(uint256)"(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
   minionExists(
     minionID: BigNumberish,
     overrides?: CallOverrides
@@ -951,6 +1213,10 @@ export class FloraArmy extends Contract {
 
   "name()"(overrides?: CallOverrides): Promise<string>;
 
+  owner(overrides?: CallOverrides): Promise<string>;
+
+  "owner()"(overrides?: CallOverrides): Promise<string>;
+
   ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
   "ownerOf(uint256)"(
@@ -958,13 +1224,15 @@ export class FloraArmy extends Contract {
     overrides?: CallOverrides
   ): Promise<string>;
 
-  population(overrides?: CallOverrides): Promise<BigNumber>;
+  powerLevels(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
-  "population()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-  rankContract(overrides?: CallOverrides): Promise<string>;
-
-  "rankContract()"(overrides?: CallOverrides): Promise<string>;
+  "powerLevels(uint256)"(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
   recruit(
     branchHash: BytesLike,
@@ -975,6 +1243,10 @@ export class FloraArmy extends Contract {
     branchHash: BytesLike,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
+
+  renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
+
+  "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   "safeTransferFrom(address,address,uint256)"(
     from: string,
@@ -1021,12 +1293,38 @@ export class FloraArmy extends Contract {
 
   "symbol()"(overrides?: CallOverrides): Promise<string>;
 
+  tokenByIndex(
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "tokenByIndex(uint256)"(
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  tokenOfOwnerByIndex(
+    owner: string,
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "tokenOfOwnerByIndex(address,uint256)"(
+    owner: string,
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
   tokenURI(minionID: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
   "tokenURI(uint256)"(
     minionID: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
+
+  totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   train(
     minionID: BigNumberish,
@@ -1049,6 +1347,26 @@ export class FloraArmy extends Contract {
     from: string,
     to: string,
     tokenId: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  transferOwnership(
+    newOwner: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "transferOwnership(address)"(
+    newOwner: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  updateBaseURI(
+    baseURI_: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "updateBaseURI(string)"(
+    baseURI_: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -1079,10 +1397,46 @@ export class FloraArmy extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    baseURI(overrides?: CallOverrides): Promise<string>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<string>;
+
     boost(minionID: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     "boost(uint256)"(
       minionID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    changeMetadataNames(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "changeMetadataNames(string[5])"(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    changePowerLevels(
+      powerLevels_: [
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish
+      ],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "changePowerLevels(int256[5])"(
+      powerLevels_: [
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish
+      ],
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1166,35 +1520,39 @@ export class FloraArmy extends Contract {
       4: string;
     }>;
 
-    getTeamInfo(
+    getTeamProfile(
       minionIDs: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<
       {
-        branchAddr: string;
+        branch: string;
         armed: boolean;
-        envFactor: BigNumber;
+        price: BigNumber;
         power: BigNumber;
+        uri: string;
         0: string;
         1: boolean;
         2: BigNumber;
         3: BigNumber;
+        4: string;
       }[]
     >;
 
-    "getTeamInfo(uint256[])"(
+    "getTeamProfile(uint256[])"(
       minionIDs: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<
       {
-        branchAddr: string;
+        branch: string;
         armed: boolean;
-        envFactor: BigNumber;
+        price: BigNumber;
         power: BigNumber;
+        uri: string;
         0: string;
         1: boolean;
         2: BigNumber;
         3: BigNumber;
+        4: string;
       }[]
     >;
 
@@ -1234,6 +1592,16 @@ export class FloraArmy extends Contract {
       minionID: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    metadataNames(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "metadataNames(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     minionExists(
       minionID: BigNumberish,
@@ -1277,6 +1645,10 @@ export class FloraArmy extends Contract {
 
     "name()"(overrides?: CallOverrides): Promise<string>;
 
+    owner(overrides?: CallOverrides): Promise<string>;
+
+    "owner()"(overrides?: CallOverrides): Promise<string>;
+
     ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
     "ownerOf(uint256)"(
@@ -1284,13 +1656,15 @@ export class FloraArmy extends Contract {
       overrides?: CallOverrides
     ): Promise<string>;
 
-    population(overrides?: CallOverrides): Promise<BigNumber>;
+    powerLevels(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
-    "population()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    rankContract(overrides?: CallOverrides): Promise<string>;
-
-    "rankContract()"(overrides?: CallOverrides): Promise<string>;
+    "powerLevels(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     recruit(
       branchHash: BytesLike,
@@ -1301,6 +1675,10 @@ export class FloraArmy extends Contract {
       branchHash: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    renounceOwnership(overrides?: CallOverrides): Promise<void>;
+
+    "renounceOwnership()"(overrides?: CallOverrides): Promise<void>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
@@ -1347,6 +1725,28 @@ export class FloraArmy extends Contract {
 
     "symbol()"(overrides?: CallOverrides): Promise<string>;
 
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     tokenURI(
       minionID: BigNumberish,
       overrides?: CallOverrides
@@ -1356,6 +1756,10 @@ export class FloraArmy extends Contract {
       minionID: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     train(minionID: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
@@ -1375,6 +1779,23 @@ export class FloraArmy extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    transferOwnership(
+      newOwner: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "transferOwnership(address)"(
+      newOwner: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    updateBaseURI(baseURI_: string, overrides?: CallOverrides): Promise<void>;
+
+    "updateBaseURI(string)"(
+      baseURI_: string,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -1398,6 +1819,11 @@ export class FloraArmy extends Contract {
       armed: boolean | null,
       environmentFactor: null,
       power: null
+    ): EventFilter;
+
+    OwnershipTransferred(
+      previousOwner: string | null,
+      newOwner: string | null
     ): EventFilter;
 
     Transfer(
@@ -1434,10 +1860,46 @@ export class FloraArmy extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    baseURI(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     boost(minionID: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
 
     "boost(uint256)"(
       minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    changeMetadataNames(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "changeMetadataNames(string[5])"(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    changePowerLevels(
+      powerLevels_: [
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish
+      ],
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "changePowerLevels(int256[5])"(
+      powerLevels_: [
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish
+      ],
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -1489,12 +1951,12 @@ export class FloraArmy extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getTeamInfo(
+    getTeamProfile(
       minionIDs: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "getTeamInfo(uint256[])"(
+    "getTeamProfile(uint256[])"(
       minionIDs: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -1536,6 +1998,16 @@ export class FloraArmy extends Contract {
       overrides?: Overrides
     ): Promise<BigNumber>;
 
+    metadataNames(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "metadataNames(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     minionExists(
       minionID: BigNumberish,
       overrides?: CallOverrides
@@ -1557,6 +2029,10 @@ export class FloraArmy extends Contract {
 
     "name()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+    owner(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     ownerOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1567,13 +2043,15 @@ export class FloraArmy extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    population(overrides?: CallOverrides): Promise<BigNumber>;
+    powerLevels(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
-    "population()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    rankContract(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "rankContract()"(overrides?: CallOverrides): Promise<BigNumber>;
+    "powerLevels(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     recruit(branchHash: BytesLike, overrides?: Overrides): Promise<BigNumber>;
 
@@ -1581,6 +2059,10 @@ export class FloraArmy extends Contract {
       branchHash: BytesLike,
       overrides?: Overrides
     ): Promise<BigNumber>;
+
+    renounceOwnership(overrides?: Overrides): Promise<BigNumber>;
+
+    "renounceOwnership()"(overrides?: Overrides): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
@@ -1627,6 +2109,28 @@ export class FloraArmy extends Contract {
 
     "symbol()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     tokenURI(
       minionID: BigNumberish,
       overrides?: CallOverrides
@@ -1636,6 +2140,10 @@ export class FloraArmy extends Contract {
       minionID: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     train(minionID: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
 
@@ -1655,6 +2163,23 @@ export class FloraArmy extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    transferOwnership(
+      newOwner: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "transferOwnership(address)"(
+      newOwner: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    updateBaseURI(baseURI_: string, overrides?: Overrides): Promise<BigNumber>;
+
+    "updateBaseURI(string)"(
+      baseURI_: string,
       overrides?: Overrides
     ): Promise<BigNumber>;
   };
@@ -1692,6 +2217,10 @@ export class FloraArmy extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    baseURI(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     boost(
       minionID: BigNumberish,
       overrides?: Overrides
@@ -1699,6 +2228,38 @@ export class FloraArmy extends Contract {
 
     "boost(uint256)"(
       minionID: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    changeMetadataNames(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "changeMetadataNames(string[5])"(
+      metadataNames_: [string, string, string, string, string],
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    changePowerLevels(
+      powerLevels_: [
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish
+      ],
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "changePowerLevels(int256[5])"(
+      powerLevels_: [
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish,
+        BigNumberish
+      ],
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
@@ -1752,12 +2313,12 @@ export class FloraArmy extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getTeamInfo(
+    getTeamProfile(
       minionIDs: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "getTeamInfo(uint256[])"(
+    "getTeamProfile(uint256[])"(
       minionIDs: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
@@ -1808,6 +2369,16 @@ export class FloraArmy extends Contract {
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
+    metadataNames(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "metadataNames(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     minionExists(
       minionID: BigNumberish,
       overrides?: CallOverrides
@@ -1832,6 +2403,10 @@ export class FloraArmy extends Contract {
 
     "name()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     ownerOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1842,13 +2417,15 @@ export class FloraArmy extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    population(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    powerLevels(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    "population()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    rankContract(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "rankContract()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    "powerLevels(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     recruit(
       branchHash: BytesLike,
@@ -1859,6 +2436,10 @@ export class FloraArmy extends Contract {
       branchHash: BytesLike,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
+
+    renounceOwnership(overrides?: Overrides): Promise<PopulatedTransaction>;
+
+    "renounceOwnership()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
@@ -1905,6 +2486,28 @@ export class FloraArmy extends Contract {
 
     "symbol()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     tokenURI(
       minionID: BigNumberish,
       overrides?: CallOverrides
@@ -1914,6 +2517,10 @@ export class FloraArmy extends Contract {
       minionID: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     train(
       minionID: BigNumberish,
@@ -1936,6 +2543,26 @@ export class FloraArmy extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    transferOwnership(
+      newOwner: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "transferOwnership(address)"(
+      newOwner: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    updateBaseURI(
+      baseURI_: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "updateBaseURI(string)"(
+      baseURI_: string,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
   };

@@ -5,14 +5,14 @@
 import { Contract, Signer } from "ethers";
 import { Provider } from "@ethersproject/providers";
 
-import type { ArmyInterface } from "../ArmyInterface";
+import type { ERC721Enumerable } from "../ERC721Enumerable";
 
-export class ArmyInterface__factory {
+export class ERC721Enumerable__factory {
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
-  ): ArmyInterface {
-    return new Contract(address, _abi, signerOrProvider) as ArmyInterface;
+  ): ERC721Enumerable {
+    return new Contract(address, _abi, signerOrProvider) as ERC721Enumerable;
   }
 }
 
@@ -113,19 +113,6 @@ const _abi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "arm",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
         internalType: "address",
         name: "owner",
         type: "address",
@@ -135,24 +122,11 @@ const _abi = [
     outputs: [
       {
         internalType: "uint256",
-        name: "balance",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
         name: "",
         type: "uint256",
       },
     ],
-    name: "boost",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -167,71 +141,11 @@ const _abi = [
     outputs: [
       {
         internalType: "address",
-        name: "operator",
+        name: "",
         type: "address",
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "getMinionInfo",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-      {
-        internalType: "int256",
-        name: "",
-        type: "int256",
-      },
-      {
-        internalType: "int256",
-        name: "",
-        type: "int256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "grant",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "heal",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -259,32 +173,13 @@ const _abi = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "liberate",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "minionExists",
+    inputs: [],
+    name: "name",
     outputs: [
       {
-        internalType: "bool",
+        internalType: "string",
         name: "",
-        type: "bool",
+        type: "string",
       },
     ],
     stateMutability: "view",
@@ -302,30 +197,11 @@ const _abi = [
     outputs: [
       {
         internalType: "address",
-        name: "owner",
+        name: "",
         type: "address",
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "",
-        type: "bytes32",
-      },
-    ],
-    name: "recruit",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -370,7 +246,7 @@ const _abi = [
       },
       {
         internalType: "bytes",
-        name: "data",
+        name: "_data",
         type: "bytes",
       },
     ],
@@ -388,7 +264,7 @@ const _abi = [
       },
       {
         internalType: "bool",
-        name: "_approved",
+        name: "approved",
         type: "bool",
       },
     ],
@@ -417,16 +293,91 @@ const _abi = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "symbol",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
+      {
+        internalType: "uint256",
+        name: "index",
+        type: "uint256",
+      },
+    ],
+    name: "tokenByIndex",
+    outputs: [
       {
         internalType: "uint256",
         name: "",
         type: "uint256",
       },
     ],
-    name: "train",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "index",
+        type: "uint256",
+      },
+    ],
+    name: "tokenOfOwnerByIndex",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "tokenURI",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "totalSupply",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {

@@ -20,25 +20,19 @@ import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 
-interface ArmyInterfaceInterface extends ethers.utils.Interface {
+interface IERC721EnumerableInterface extends ethers.utils.Interface {
   functions: {
     "approve(address,uint256)": FunctionFragment;
-    "arm(uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
-    "boost(uint256)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
-    "getMinionInfo(uint256)": FunctionFragment;
-    "grant(uint256)": FunctionFragment;
-    "heal(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
-    "liberate(uint256)": FunctionFragment;
-    "minionExists(uint256)": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
-    "recruit(bytes32)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
-    "train(uint256)": FunctionFragment;
+    "tokenByIndex(uint256)": FunctionFragment;
+    "tokenOfOwnerByIndex(address,uint256)": FunctionFragment;
+    "totalSupply()": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
   };
 
@@ -46,36 +40,19 @@ interface ArmyInterfaceInterface extends ethers.utils.Interface {
     functionFragment: "approve",
     values: [string, BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "arm", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
-  encodeFunctionData(functionFragment: "boost", values: [BigNumberish]): string;
   encodeFunctionData(
     functionFragment: "getApproved",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getMinionInfo",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "grant", values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: "heal", values: [BigNumberish]): string;
-  encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [string, string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "liberate",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "minionExists",
-    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
     values: [BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "recruit", values: [BytesLike]): string;
   encodeFunctionData(
     functionFragment: "safeTransferFrom",
     values: [string, string, BigNumberish]
@@ -88,37 +65,34 @@ interface ArmyInterfaceInterface extends ethers.utils.Interface {
     functionFragment: "supportsInterface",
     values: [BytesLike]
   ): string;
-  encodeFunctionData(functionFragment: "train", values: [BigNumberish]): string;
+  encodeFunctionData(
+    functionFragment: "tokenByIndex",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenOfOwnerByIndex",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalSupply",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "transferFrom",
     values: [string, string, BigNumberish]
   ): string;
 
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "arm", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "boost", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getMinionInfo",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "grant", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "heal", data: BytesLike): Result;
-  decodeFunctionResult(
     functionFragment: "isApprovedForAll",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "liberate", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "minionExists",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "recruit", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "safeTransferFrom",
     data: BytesLike
@@ -131,7 +105,18 @@ interface ArmyInterfaceInterface extends ethers.utils.Interface {
     functionFragment: "supportsInterface",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "train", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenByIndex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenOfOwnerByIndex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "totalSupply",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "transferFrom",
     data: BytesLike
@@ -148,7 +133,7 @@ interface ArmyInterfaceInterface extends ethers.utils.Interface {
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
 }
 
-export class ArmyInterface extends Contract {
+export class IERC721Enumerable extends Contract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -159,7 +144,7 @@ export class ArmyInterface extends Contract {
   removeAllListeners(eventName: EventFilter | string): this;
   removeListener(eventName: any, listener: Listener): this;
 
-  interface: ArmyInterfaceInterface;
+  interface: IERC721EnumerableInterface;
 
   functions: {
     approve(
@@ -171,16 +156,6 @@ export class ArmyInterface extends Contract {
     "approve(address,uint256)"(
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    arm(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "arm(uint256)"(
-      arg0: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -200,16 +175,6 @@ export class ArmyInterface extends Contract {
       0: BigNumber;
     }>;
 
-    boost(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "boost(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -226,46 +191,6 @@ export class ArmyInterface extends Contract {
       0: string;
     }>;
 
-    getMinionInfo(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    "getMinionInfo(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    grant(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "grant(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    heal(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "heal(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
     isApprovedForAll(
       owner: string,
       operator: string,
@@ -277,30 +202,6 @@ export class ArmyInterface extends Contract {
     "isApprovedForAll(address,address)"(
       owner: string,
       operator: string,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: boolean;
-    }>;
-
-    liberate(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "liberate(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    minionExists(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: boolean;
-    }>;
-
-    "minionExists(uint256)"(
-      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<{
       0: boolean;
@@ -321,16 +222,6 @@ export class ArmyInterface extends Contract {
       owner: string;
       0: string;
     }>;
-
-    recruit(
-      arg0: BytesLike,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "recruit(bytes32)"(
-      arg0: BytesLike,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
@@ -373,15 +264,45 @@ export class ArmyInterface extends Contract {
       0: boolean;
     }>;
 
-    train(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
 
-    "train(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: BigNumber;
+    }>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      tokenId: BigNumber;
+      0: BigNumber;
+    }>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      tokenId: BigNumber;
+      0: BigNumber;
+    }>;
+
+    totalSupply(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
+    }>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<{
+      0: BigNumber;
+    }>;
 
     transferFrom(
       from: string,
@@ -410,29 +331,12 @@ export class ArmyInterface extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  arm(arg0: BigNumberish, overrides?: Overrides): Promise<ContractTransaction>;
-
-  "arm(uint256)"(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
   balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   "balanceOf(address)"(
     owner: string,
     overrides?: CallOverrides
   ): Promise<BigNumber>;
-
-  boost(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  "boost(uint256)"(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
 
   getApproved(
     tokenId: BigNumberish,
@@ -443,43 +347,6 @@ export class ArmyInterface extends Contract {
     tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
-
-  getMinionInfo(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<{
-    0: string;
-    1: boolean;
-    2: BigNumber;
-    3: BigNumber;
-  }>;
-
-  "getMinionInfo(uint256)"(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<{
-    0: string;
-    1: boolean;
-    2: BigNumber;
-    3: BigNumber;
-  }>;
-
-  grant(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  "grant(uint256)"(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  heal(arg0: BigNumberish, overrides?: Overrides): Promise<ContractTransaction>;
-
-  "heal(uint256)"(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
 
   isApprovedForAll(
     owner: string,
@@ -493,36 +360,12 @@ export class ArmyInterface extends Contract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  liberate(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  "liberate(uint256)"(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  minionExists(arg0: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-
-  "minionExists(uint256)"(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
   ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
   "ownerOf(uint256)"(
     tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
-
-  recruit(arg0: BytesLike, overrides?: Overrides): Promise<ContractTransaction>;
-
-  "recruit(bytes32)"(
-    arg0: BytesLike,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
 
   "safeTransferFrom(address,address,uint256)"(
     from: string,
@@ -561,15 +404,31 @@ export class ArmyInterface extends Contract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  train(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
+  tokenByIndex(
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
-  "train(uint256)"(
-    arg0: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
+  "tokenByIndex(uint256)"(
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  tokenOfOwnerByIndex(
+    owner: string,
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "tokenOfOwnerByIndex(address,uint256)"(
+    owner: string,
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   transferFrom(
     from: string,
@@ -598,26 +457,12 @@ export class ArmyInterface extends Contract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    arm(arg0: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    "arm(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "balanceOf(address)"(
       owner: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
-    boost(arg0: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    "boost(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     getApproved(
       tokenId: BigNumberish,
@@ -628,40 +473,6 @@ export class ArmyInterface extends Contract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
-
-    getMinionInfo(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    "getMinionInfo(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-      1: boolean;
-      2: BigNumber;
-      3: BigNumber;
-    }>;
-
-    grant(arg0: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    "grant(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    heal(arg0: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    "heal(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     isApprovedForAll(
       owner: string,
@@ -675,36 +486,12 @@ export class ArmyInterface extends Contract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    liberate(arg0: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    "liberate(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    minionExists(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    "minionExists(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
     ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
     "ownerOf(uint256)"(
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
-
-    recruit(arg0: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
-
-    "recruit(bytes32)"(
-      arg0: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
@@ -743,12 +530,31 @@ export class ArmyInterface extends Contract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    train(arg0: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    "train(uint256)"(
-      arg0: BigNumberish,
+    tokenByIndex(
+      index: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
       from: string,
@@ -798,25 +604,11 @@ export class ArmyInterface extends Contract {
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    arm(arg0: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
-
-    "arm(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "balanceOf(address)"(
       owner: string,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    boost(arg0: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
-
-    "boost(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
     ): Promise<BigNumber>;
 
     getApproved(
@@ -827,30 +619,6 @@ export class ArmyInterface extends Contract {
     "getApproved(uint256)"(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getMinionInfo(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "getMinionInfo(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    grant(arg0: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
-
-    "grant(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    heal(arg0: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
-
-    "heal(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
     ): Promise<BigNumber>;
 
     isApprovedForAll(
@@ -865,23 +633,6 @@ export class ArmyInterface extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    liberate(arg0: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
-
-    "liberate(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    minionExists(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "minionExists(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     ownerOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -890,13 +641,6 @@ export class ArmyInterface extends Contract {
     "ownerOf(uint256)"(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    recruit(arg0: BytesLike, overrides?: Overrides): Promise<BigNumber>;
-
-    "recruit(bytes32)"(
-      arg0: BytesLike,
-      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256)"(
@@ -936,12 +680,31 @@ export class ArmyInterface extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    train(arg0: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
-
-    "train(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
       from: string,
@@ -971,16 +734,6 @@ export class ArmyInterface extends Contract {
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    arm(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "arm(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
     balanceOf(
       owner: string,
       overrides?: CallOverrides
@@ -991,16 +744,6 @@ export class ArmyInterface extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    boost(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "boost(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1009,36 +752,6 @@ export class ArmyInterface extends Contract {
     "getApproved(uint256)"(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getMinionInfo(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "getMinionInfo(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    grant(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "grant(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    heal(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "heal(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     isApprovedForAll(
@@ -1053,26 +766,6 @@ export class ArmyInterface extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    liberate(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "liberate(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    minionExists(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "minionExists(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     ownerOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1081,16 +774,6 @@ export class ArmyInterface extends Contract {
     "ownerOf(uint256)"(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    recruit(
-      arg0: BytesLike,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "recruit(bytes32)"(
-      arg0: BytesLike,
-      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "safeTransferFrom(address,address,uint256)"(
@@ -1130,15 +813,31 @@ export class ArmyInterface extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    train(
-      arg0: BigNumberish,
-      overrides?: Overrides
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "train(uint256)"(
-      arg0: BigNumberish,
-      overrides?: Overrides
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transferFrom(
       from: string,

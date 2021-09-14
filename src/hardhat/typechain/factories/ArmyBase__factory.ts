@@ -150,19 +150,6 @@ const _abi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "arm",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
         internalType: "address",
         name: "owner",
         type: "address",
@@ -177,19 +164,6 @@ const _abi = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "boost",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -291,119 +265,6 @@ const _abi = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "minionID",
-        type: "uint256",
-      },
-    ],
-    name: "getMinionProfile",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "address",
-            name: "branch",
-            type: "address",
-          },
-          {
-            internalType: "bool",
-            name: "armed",
-            type: "bool",
-          },
-          {
-            internalType: "int256",
-            name: "price",
-            type: "int256",
-          },
-          {
-            internalType: "int256",
-            name: "power",
-            type: "int256",
-          },
-          {
-            internalType: "string",
-            name: "uri",
-            type: "string",
-          },
-        ],
-        internalType: "struct ArmyBase.MinionProfile",
-        name: "profile",
-        type: "tuple",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256[]",
-        name: "minionIDs",
-        type: "uint256[]",
-      },
-    ],
-    name: "getTeamInfo",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "address",
-            name: "branchAddr",
-            type: "address",
-          },
-          {
-            internalType: "bool",
-            name: "armed",
-            type: "bool",
-          },
-          {
-            internalType: "int256",
-            name: "envFactor",
-            type: "int256",
-          },
-          {
-            internalType: "int256",
-            name: "power",
-            type: "int256",
-          },
-        ],
-        internalType: "struct ArmyBase.Minion[]",
-        name: "teamInfo",
-        type: "tuple[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "minionID",
-        type: "uint256",
-      },
-    ],
-    name: "grant",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "heal",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     inputs: [],
     name: "initPower",
     outputs: [
@@ -438,19 +299,6 @@ const _abi = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "minionID",
-        type: "uint256",
-      },
-    ],
-    name: "liberate",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -531,32 +379,6 @@ const _abi = [
     outputs: [
       {
         internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "population",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "rankContract",
-    outputs: [
-      {
-        internalType: "contract RANK",
         name: "",
         type: "address",
       },
@@ -701,7 +523,50 @@ const _abi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "minionID",
+        name: "index",
+        type: "uint256",
+      },
+    ],
+    name: "tokenByIndex",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "index",
+        type: "uint256",
+      },
+    ],
+    name: "tokenOfOwnerByIndex",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
         type: "uint256",
       },
     ],
@@ -717,16 +582,16 @@ const _abi = [
     type: "function",
   },
   {
-    inputs: [
+    inputs: [],
+    name: "totalSupply",
+    outputs: [
       {
         internalType: "uint256",
         name: "",
         type: "uint256",
       },
     ],
-    name: "train",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "view",
     type: "function",
   },
   {

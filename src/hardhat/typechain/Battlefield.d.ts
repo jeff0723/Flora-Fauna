@@ -24,10 +24,9 @@ import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 interface BattlefieldInterface extends ethers.utils.Interface {
   functions: {
     "approve(address,uint256)": FunctionFragment;
-    "assemblyJson()": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
-    "changeAssemblyJson(string)": FunctionFragment;
     "changePropInterval(uint256)": FunctionFragment;
+    "changeSeriesName(string)": FunctionFragment;
     "changeSlottingFee(uint256)": FunctionFragment;
     "changeVoteInterval(uint256)": FunctionFragment;
     "claimFunds(uint256,address)": FunctionFragment;
@@ -37,7 +36,6 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     "faunaConquer(uint256,uint256)": FunctionFragment;
     "faunaFieldCount()": FunctionFragment;
     "faunaOnField(uint256)": FunctionFragment;
-    "faunaRank()": FunctionFragment;
     "fieldDefender(uint256,uint256)": FunctionFragment;
     "fieldGeneration(uint256)": FunctionFragment;
     "fieldLocked()": FunctionFragment;
@@ -45,7 +43,6 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     "floraConquer(uint256,uint256)": FunctionFragment;
     "floraFieldCount()": FunctionFragment;
     "floraOnField(uint256)": FunctionFragment;
-    "floraRank()": FunctionFragment;
     "generation()": FunctionFragment;
     "getAllFieldInfo()": FunctionFragment;
     "getAllProposalInfo()": FunctionFragment;
@@ -65,6 +62,7 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     "renounceOwnership()": FunctionFragment;
     "retreat(uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
+    "seriesName()": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
     "slottingFee()": FunctionFragment;
     "startVote()": FunctionFragment;
@@ -83,18 +81,14 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     functionFragment: "approve",
     values: [string, BigNumberish]
   ): string;
-  encodeFunctionData(
-    functionFragment: "assemblyJson",
-    values?: undefined
-  ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
-  encodeFunctionData(
-    functionFragment: "changeAssemblyJson",
-    values: [string]
-  ): string;
   encodeFunctionData(
     functionFragment: "changePropInterval",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "changeSeriesName",
+    values: [string]
   ): string;
   encodeFunctionData(
     functionFragment: "changeSlottingFee",
@@ -126,7 +120,6 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     functionFragment: "faunaOnField",
     values: [BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "faunaRank", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "fieldDefender",
     values: [BigNumberish, BigNumberish]
@@ -152,7 +145,6 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     functionFragment: "floraOnField",
     values: [BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "floraRank", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "generation",
     values?: undefined
@@ -221,6 +213,10 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     values: [string, string, BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "seriesName",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "setApprovalForAll",
     values: [string, boolean]
   ): string;
@@ -261,17 +257,13 @@ interface BattlefieldInterface extends ethers.utils.Interface {
   ): string;
 
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "assemblyJson",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "changeAssemblyJson",
+    functionFragment: "changePropInterval",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "changePropInterval",
+    functionFragment: "changeSeriesName",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -298,7 +290,6 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     functionFragment: "faunaOnField",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "faunaRank", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "fieldDefender",
     data: BytesLike
@@ -324,7 +315,6 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     functionFragment: "floraOnField",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "floraRank", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "generation", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getAllFieldInfo",
@@ -380,6 +370,7 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     functionFragment: "safeTransferFrom",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "seriesName", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "setApprovalForAll",
     data: BytesLike
@@ -460,14 +451,6 @@ export class Battlefield extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    assemblyJson(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
-    "assemblyJson()"(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
     balanceOf(
       owner: string,
       overrides?: CallOverrides
@@ -482,16 +465,6 @@ export class Battlefield extends Contract {
       0: BigNumber;
     }>;
 
-    changeAssemblyJson(
-      assemblyJson_: string,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "changeAssemblyJson(string)"(
-      assemblyJson_: string,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
     changePropInterval(
       propInterval_: BigNumberish,
       overrides?: Overrides
@@ -499,6 +472,16 @@ export class Battlefield extends Contract {
 
     "changePropInterval(uint256)"(
       propInterval_: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    changeSeriesName(
+      seriesName_: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "changeSeriesName(string)"(
+      seriesName_: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -590,14 +573,6 @@ export class Battlefield extends Contract {
       0: boolean;
     }>;
 
-    faunaRank(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
-    "faunaRank()"(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
     fieldDefender(
       arg0: BigNumberish,
       arg1: BigNumberish,
@@ -676,14 +651,6 @@ export class Battlefield extends Contract {
       overrides?: CallOverrides
     ): Promise<{
       0: boolean;
-    }>;
-
-    floraRank(overrides?: CallOverrides): Promise<{
-      0: string;
-    }>;
-
-    "floraRank()"(overrides?: CallOverrides): Promise<{
-      0: string;
     }>;
 
     generation(overrides?: CallOverrides): Promise<{
@@ -979,6 +946,14 @@ export class Battlefield extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
+    seriesName(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
+    "seriesName()"(overrides?: CallOverrides): Promise<{
+      0: string;
+    }>;
+
     setApprovalForAll(
       operator: string,
       approved: boolean,
@@ -1112,26 +1087,12 @@ export class Battlefield extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  assemblyJson(overrides?: CallOverrides): Promise<string>;
-
-  "assemblyJson()"(overrides?: CallOverrides): Promise<string>;
-
   balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   "balanceOf(address)"(
     owner: string,
     overrides?: CallOverrides
   ): Promise<BigNumber>;
-
-  changeAssemblyJson(
-    assemblyJson_: string,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  "changeAssemblyJson(string)"(
-    assemblyJson_: string,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
 
   changePropInterval(
     propInterval_: BigNumberish,
@@ -1140,6 +1101,16 @@ export class Battlefield extends Contract {
 
   "changePropInterval(uint256)"(
     propInterval_: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  changeSeriesName(
+    seriesName_: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "changeSeriesName(string)"(
+    seriesName_: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -1216,10 +1187,6 @@ export class Battlefield extends Contract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  faunaRank(overrides?: CallOverrides): Promise<string>;
-
-  "faunaRank()"(overrides?: CallOverrides): Promise<string>;
-
   fieldDefender(
     arg0: BigNumberish,
     arg1: BigNumberish,
@@ -1272,10 +1239,6 @@ export class Battlefield extends Contract {
     arg0: BigNumberish,
     overrides?: CallOverrides
   ): Promise<boolean>;
-
-  floraRank(overrides?: CallOverrides): Promise<string>;
-
-  "floraRank()"(overrides?: CallOverrides): Promise<string>;
 
   generation(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -1492,6 +1455,10 @@ export class Battlefield extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
+  seriesName(overrides?: CallOverrides): Promise<string>;
+
+  "seriesName()"(overrides?: CallOverrides): Promise<string>;
+
   setApprovalForAll(
     operator: string,
     approved: boolean,
@@ -1594,26 +1561,12 @@ export class Battlefield extends Contract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    assemblyJson(overrides?: CallOverrides): Promise<string>;
-
-    "assemblyJson()"(overrides?: CallOverrides): Promise<string>;
-
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "balanceOf(address)"(
       owner: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
-    changeAssemblyJson(
-      assemblyJson_: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "changeAssemblyJson(string)"(
-      assemblyJson_: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     changePropInterval(
       propInterval_: BigNumberish,
@@ -1622,6 +1575,16 @@ export class Battlefield extends Contract {
 
     "changePropInterval(uint256)"(
       propInterval_: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    changeSeriesName(
+      seriesName_: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "changeSeriesName(string)"(
+      seriesName_: string,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1701,10 +1664,6 @@ export class Battlefield extends Contract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    faunaRank(overrides?: CallOverrides): Promise<string>;
-
-    "faunaRank()"(overrides?: CallOverrides): Promise<string>;
-
     fieldDefender(
       arg0: BigNumberish,
       arg1: BigNumberish,
@@ -1760,10 +1719,6 @@ export class Battlefield extends Contract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<boolean>;
-
-    floraRank(overrides?: CallOverrides): Promise<string>;
-
-    "floraRank()"(overrides?: CallOverrides): Promise<string>;
 
     generation(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -1977,6 +1932,10 @@ export class Battlefield extends Contract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    seriesName(overrides?: CallOverrides): Promise<string>;
+
+    "seriesName()"(overrides?: CallOverrides): Promise<string>;
+
     setApprovalForAll(
       operator: string,
       approved: boolean,
@@ -2138,25 +2097,11 @@ export class Battlefield extends Contract {
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    assemblyJson(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "assemblyJson()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "balanceOf(address)"(
       owner: string,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    changeAssemblyJson(
-      assemblyJson_: string,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    "changeAssemblyJson(string)"(
-      assemblyJson_: string,
-      overrides?: Overrides
     ): Promise<BigNumber>;
 
     changePropInterval(
@@ -2166,6 +2111,16 @@ export class Battlefield extends Contract {
 
     "changePropInterval(uint256)"(
       propInterval_: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    changeSeriesName(
+      seriesName_: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "changeSeriesName(string)"(
+      seriesName_: string,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -2245,10 +2200,6 @@ export class Battlefield extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    faunaRank(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "faunaRank()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     fieldDefender(
       arg0: BigNumberish,
       arg1: BigNumberish,
@@ -2304,10 +2255,6 @@ export class Battlefield extends Contract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
-    floraRank(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "floraRank()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     generation(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -2455,6 +2402,10 @@ export class Battlefield extends Contract {
       overrides?: Overrides
     ): Promise<BigNumber>;
 
+    seriesName(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "seriesName()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     setApprovalForAll(
       operator: string,
       approved: boolean,
@@ -2561,10 +2512,6 @@ export class Battlefield extends Contract {
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    assemblyJson(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "assemblyJson()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     balanceOf(
       owner: string,
       overrides?: CallOverrides
@@ -2575,16 +2522,6 @@ export class Battlefield extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    changeAssemblyJson(
-      assemblyJson_: string,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "changeAssemblyJson(string)"(
-      assemblyJson_: string,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
     changePropInterval(
       propInterval_: BigNumberish,
       overrides?: Overrides
@@ -2592,6 +2529,16 @@ export class Battlefield extends Contract {
 
     "changePropInterval(uint256)"(
       propInterval_: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    changeSeriesName(
+      seriesName_: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "changeSeriesName(string)"(
+      seriesName_: string,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
@@ -2673,10 +2620,6 @@ export class Battlefield extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    faunaRank(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "faunaRank()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     fieldDefender(
       arg0: BigNumberish,
       arg1: BigNumberish,
@@ -2734,10 +2677,6 @@ export class Battlefield extends Contract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
-
-    floraRank(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "floraRank()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     generation(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -2895,6 +2834,10 @@ export class Battlefield extends Contract {
       _data: BytesLike,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
+
+    seriesName(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "seriesName()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     setApprovalForAll(
       operator: string,
