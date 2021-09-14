@@ -1,0 +1,104 @@
+{
+  "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "node",
+          "type": "bytes32"
+        }
+      ],
+      "name": "resolver",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "node",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "resolverAddr",
+          "type": "address"
+        }
+      ],
+      "name": "setResolver",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xd2f51f97986e2155ad154366870fc2fdd19150931a4221bad6ab01956483ea4d",
+  "receipt": {
+    "to": null,
+    "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "transactionIndex": 0,
+    "gasUsed": "123721",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x29d58e747ee48ac63fa8e9f1a2144bbfa6506e62c18dc7ecfa1efbf72585d670",
+    "transactionHash": "0xd2f51f97986e2155ad154366870fc2fdd19150931a4221bad6ab01956483ea4d",
+    "logs": [],
+    "blockNumber": 1,
+    "cumulativeGasUsed": "123721",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "solcInputHash": "b78b53401ff67be83be6243fd91eeb70",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"}],\"name\":\"resolver\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"resolverAddr\",\"type\":\"address\"}],\"name\":\"setResolver\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/mock/MockEnsRegistry.sol\":\"MockEnsRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":50},\"remappings\":[]},\"sources\":{\"contracts/mock/MockEnsRegistry.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.0;\\r\\n\\r\\ncontract MockEnsRegistry {\\r\\n    \\r\\n    mapping (bytes32 => address) private _resolver;\\r\\n\\r\\n    function setResolver(bytes32 node, address resolverAddr) external {\\r\\n        _resolver[node] = resolverAddr;\\r\\n    }\\r\\n\\r\\n    function resolver(bytes32 node) public view returns (address) {\\r\\n        return _resolver[node];\\r\\n    }\\r\\n}\",\"keccak256\":\"0xbd4064219dbaf0999878af89ab8ba8b7a2ed663d88015e6a0c7f2ecbd5e0735d\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610146806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80630178b8bf1461003b5780631896f70a14610080575b600080fd5b6100646100493660046100be565b6000908152602081905260409020546001600160a01b031690565b6040516001600160a01b03909116815260200160405180910390f35b6100bc61008e3660046100d6565b60009182526020829052604090912080546001600160a01b0319166001600160a01b03909216919091179055565b005b6000602082840312156100cf578081fd5b5035919050565b600080604083850312156100e8578081fd5b8235915060208301356001600160a01b0381168114610105578182fd5b80915050925092905056fea26469706673582212201c1a4d8134a6dce30c4e164ba5e62209aca90b9019d1dc487170217552b73cb964736f6c63430008040033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c80630178b8bf1461003b5780631896f70a14610080575b600080fd5b6100646100493660046100be565b6000908152602081905260409020546001600160a01b031690565b6040516001600160a01b03909116815260200160405180910390f35b6100bc61008e3660046100d6565b60009182526020829052604090912080546001600160a01b0319166001600160a01b03909216919091179055565b005b6000602082840312156100cf578081fd5b5035919050565b600080604083850312156100e8578081fd5b8235915060208301356001600160a01b0381168114610105578182fd5b80915050925092905056fea26469706673582212201c1a4d8134a6dce30c4e164ba5e62209aca90b9019d1dc487170217552b73cb964736f6c63430008040033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 5,
+        "contract": "contracts/mock/MockEnsRegistry.sol:MockEnsRegistry",
+        "label": "_resolver",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_bytes32,t_address)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_bytes32,t_address)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      }
+    }
+  }
+}
