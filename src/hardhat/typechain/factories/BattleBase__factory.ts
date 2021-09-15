@@ -257,36 +257,6 @@ const _abi = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "getAllFieldInfo",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "address",
-            name: "leader",
-            type: "address",
-          },
-          {
-            internalType: "uint256[]",
-            name: "defender",
-            type: "uint256[]",
-          },
-          {
-            internalType: "bool",
-            name: "isFlora",
-            type: "bool",
-          },
-        ],
-        internalType: "struct BattleBase.FieldInfo[]",
-        name: "allFieldInfo",
-        type: "tuple[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "uint256",
@@ -355,6 +325,47 @@ const _abi = [
         internalType: "address",
         name: "",
         type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "startId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "area",
+        type: "uint256",
+      },
+    ],
+    name: "getRangeInfo",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "address",
+            name: "leader",
+            type: "address",
+          },
+          {
+            internalType: "uint256[]",
+            name: "defender",
+            type: "uint256[]",
+          },
+          {
+            internalType: "bool",
+            name: "isFlora",
+            type: "bool",
+          },
+        ],
+        internalType: "struct BattleBase.FieldInfo[]",
+        name: "rangeInfo",
+        type: "tuple[]",
       },
     ],
     stateMutability: "view",

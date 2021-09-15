@@ -44,13 +44,13 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     "floraFieldCount()": FunctionFragment;
     "floraOnField(uint256)": FunctionFragment;
     "generation()": FunctionFragment;
-    "getAllFieldInfo()": FunctionFragment;
     "getAllProposalInfo()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
     "getFieldDefender(uint256)": FunctionFragment;
     "getFieldInfo(uint256)": FunctionFragment;
     "getFieldLeader(uint256)": FunctionFragment;
     "getProposalCount()": FunctionFragment;
+    "getRangeInfo(uint256,uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "isFloraField(uint256)": FunctionFragment;
     "name()": FunctionFragment;
@@ -150,10 +150,6 @@ interface BattlefieldInterface extends ethers.utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "getAllFieldInfo",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "getAllProposalInfo",
     values?: undefined
   ): string;
@@ -176,6 +172,10 @@ interface BattlefieldInterface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "getProposalCount",
     values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getRangeInfo",
+    values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
@@ -317,10 +317,6 @@ interface BattlefieldInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "generation", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getAllFieldInfo",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "getAllProposalInfo",
     data: BytesLike
   ): Result;
@@ -342,6 +338,10 @@ interface BattlefieldInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "getProposalCount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getRangeInfo",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -661,44 +661,6 @@ export class Battlefield extends Contract {
       0: BigNumber;
     }>;
 
-    getAllFieldInfo(overrides?: CallOverrides): Promise<{
-      allFieldInfo: {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[];
-      0: {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[];
-    }>;
-
-    "getAllFieldInfo()"(overrides?: CallOverrides): Promise<{
-      allFieldInfo: {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[];
-      0: {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[];
-    }>;
-
     getAllProposalInfo(overrides?: CallOverrides): Promise<{
       0: {
         proposer: string;
@@ -813,6 +775,52 @@ export class Battlefield extends Contract {
 
     "getProposalCount()"(overrides?: CallOverrides): Promise<{
       0: BigNumber;
+    }>;
+
+    getRangeInfo(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      rangeInfo: {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[];
+      0: {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[];
+    }>;
+
+    "getRangeInfo(uint256,uint256)"(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      rangeInfo: {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[];
+      0: {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[];
     }>;
 
     isApprovedForAll(
@@ -1244,32 +1252,6 @@ export class Battlefield extends Contract {
 
   "generation()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-  getAllFieldInfo(
-    overrides?: CallOverrides
-  ): Promise<
-    {
-      leader: string;
-      defender: BigNumber[];
-      isFlora: boolean;
-      0: string;
-      1: BigNumber[];
-      2: boolean;
-    }[]
-  >;
-
-  "getAllFieldInfo()"(
-    overrides?: CallOverrides
-  ): Promise<
-    {
-      leader: string;
-      defender: BigNumber[];
-      isFlora: boolean;
-      0: string;
-      1: BigNumber[];
-      2: boolean;
-    }[]
-  >;
-
   getAllProposalInfo(
     overrides?: CallOverrides
   ): Promise<
@@ -1353,6 +1335,36 @@ export class Battlefield extends Contract {
   getProposalCount(overrides?: CallOverrides): Promise<BigNumber>;
 
   "getProposalCount()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+  getRangeInfo(
+    startId: BigNumberish,
+    area: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<
+    {
+      leader: string;
+      defender: BigNumber[];
+      isFlora: boolean;
+      0: string;
+      1: BigNumber[];
+      2: boolean;
+    }[]
+  >;
+
+  "getRangeInfo(uint256,uint256)"(
+    startId: BigNumberish,
+    area: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<
+    {
+      leader: string;
+      defender: BigNumber[];
+      isFlora: boolean;
+      0: string;
+      1: BigNumber[];
+      2: boolean;
+    }[]
+  >;
 
   isApprovedForAll(
     owner: string,
@@ -1724,32 +1736,6 @@ export class Battlefield extends Contract {
 
     "generation()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    getAllFieldInfo(
-      overrides?: CallOverrides
-    ): Promise<
-      {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[]
-    >;
-
-    "getAllFieldInfo()"(
-      overrides?: CallOverrides
-    ): Promise<
-      {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[]
-    >;
-
     getAllProposalInfo(
       overrides?: CallOverrides
     ): Promise<
@@ -1833,6 +1819,36 @@ export class Battlefield extends Contract {
     getProposalCount(overrides?: CallOverrides): Promise<BigNumber>;
 
     "getProposalCount()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getRangeInfo(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[]
+    >;
+
+    "getRangeInfo(uint256,uint256)"(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[]
+    >;
 
     isApprovedForAll(
       owner: string,
@@ -2260,10 +2276,6 @@ export class Battlefield extends Contract {
 
     "generation()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    getAllFieldInfo(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "getAllFieldInfo()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     getAllProposalInfo(overrides?: CallOverrides): Promise<BigNumber>;
 
     "getAllProposalInfo()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -2311,6 +2323,18 @@ export class Battlefield extends Contract {
     getProposalCount(overrides?: CallOverrides): Promise<BigNumber>;
 
     "getProposalCount()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getRangeInfo(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getRangeInfo(uint256,uint256)"(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     isApprovedForAll(
       owner: string,
@@ -2682,12 +2706,6 @@ export class Battlefield extends Contract {
 
     "generation()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    getAllFieldInfo(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "getAllFieldInfo()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     getAllProposalInfo(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
@@ -2739,6 +2757,18 @@ export class Battlefield extends Contract {
     getProposalCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "getProposalCount()"(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getRangeInfo(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getRangeInfo(uint256,uint256)"(
+      startId: BigNumberish,
+      area: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 

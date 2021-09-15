@@ -33,10 +33,10 @@ interface BattleBaseInterface extends ethers.utils.Interface {
     "floraConquer(uint256,uint256)": FunctionFragment;
     "floraFieldCount()": FunctionFragment;
     "floraOnField(uint256)": FunctionFragment;
-    "getAllFieldInfo()": FunctionFragment;
     "getFieldDefender(uint256)": FunctionFragment;
     "getFieldInfo(uint256)": FunctionFragment;
     "getFieldLeader(uint256)": FunctionFragment;
+    "getRangeInfo(uint256,uint256)": FunctionFragment;
     "isFloraField(uint256)": FunctionFragment;
     "owner()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
@@ -84,10 +84,6 @@ interface BattleBaseInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getAllFieldInfo",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "getFieldDefender",
     values: [BigNumberish]
   ): string;
@@ -98,6 +94,10 @@ interface BattleBaseInterface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "getFieldLeader",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getRangeInfo",
+    values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "isFloraField",
@@ -154,10 +154,6 @@ interface BattleBaseInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getAllFieldInfo",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "getFieldDefender",
     data: BytesLike
   ): Result;
@@ -167,6 +163,10 @@ interface BattleBaseInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "getFieldLeader",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getRangeInfo",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -328,44 +328,6 @@ export class BattleBase extends Contract {
       0: boolean;
     }>;
 
-    getAllFieldInfo(overrides?: CallOverrides): Promise<{
-      allFieldInfo: {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[];
-      0: {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[];
-    }>;
-
-    "getAllFieldInfo()"(overrides?: CallOverrides): Promise<{
-      allFieldInfo: {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[];
-      0: {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[];
-    }>;
-
     getFieldDefender(
       fieldID: BigNumberish,
       overrides?: CallOverrides
@@ -436,6 +398,52 @@ export class BattleBase extends Contract {
       overrides?: CallOverrides
     ): Promise<{
       0: string;
+    }>;
+
+    getRangeInfo(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      rangeInfo: {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[];
+      0: {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[];
+    }>;
+
+    "getRangeInfo(uint256,uint256)"(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<{
+      rangeInfo: {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[];
+      0: {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[];
     }>;
 
     isFloraField(
@@ -573,32 +581,6 @@ export class BattleBase extends Contract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  getAllFieldInfo(
-    overrides?: CallOverrides
-  ): Promise<
-    {
-      leader: string;
-      defender: BigNumber[];
-      isFlora: boolean;
-      0: string;
-      1: BigNumber[];
-      2: boolean;
-    }[]
-  >;
-
-  "getAllFieldInfo()"(
-    overrides?: CallOverrides
-  ): Promise<
-    {
-      leader: string;
-      defender: BigNumber[];
-      isFlora: boolean;
-      0: string;
-      1: BigNumber[];
-      2: boolean;
-    }[]
-  >;
-
   getFieldDefender(
     fieldID: BigNumberish,
     overrides?: CallOverrides
@@ -642,6 +624,36 @@ export class BattleBase extends Contract {
     fieldID: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
+
+  getRangeInfo(
+    startId: BigNumberish,
+    area: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<
+    {
+      leader: string;
+      defender: BigNumber[];
+      isFlora: boolean;
+      0: string;
+      1: BigNumber[];
+      2: boolean;
+    }[]
+  >;
+
+  "getRangeInfo(uint256,uint256)"(
+    startId: BigNumberish,
+    area: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<
+    {
+      leader: string;
+      defender: BigNumber[];
+      isFlora: boolean;
+      0: string;
+      1: BigNumber[];
+      2: boolean;
+    }[]
+  >;
 
   isFloraField(arg0: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
 
@@ -769,32 +781,6 @@ export class BattleBase extends Contract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    getAllFieldInfo(
-      overrides?: CallOverrides
-    ): Promise<
-      {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[]
-    >;
-
-    "getAllFieldInfo()"(
-      overrides?: CallOverrides
-    ): Promise<
-      {
-        leader: string;
-        defender: BigNumber[];
-        isFlora: boolean;
-        0: string;
-        1: BigNumber[];
-        2: boolean;
-      }[]
-    >;
-
     getFieldDefender(
       fieldID: BigNumberish,
       overrides?: CallOverrides
@@ -838,6 +824,36 @@ export class BattleBase extends Contract {
       fieldID: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    getRangeInfo(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[]
+    >;
+
+    "getRangeInfo(uint256,uint256)"(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      {
+        leader: string;
+        defender: BigNumber[];
+        isFlora: boolean;
+        0: string;
+        1: BigNumber[];
+        2: boolean;
+      }[]
+    >;
 
     isFloraField(
       arg0: BigNumberish,
@@ -982,10 +998,6 @@ export class BattleBase extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getAllFieldInfo(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "getAllFieldInfo()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     getFieldDefender(
       fieldID: BigNumberish,
       overrides?: CallOverrides
@@ -1013,6 +1025,18 @@ export class BattleBase extends Contract {
 
     "getFieldLeader(uint256)"(
       fieldID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getRangeInfo(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getRangeInfo(uint256,uint256)"(
+      startId: BigNumberish,
+      area: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -1147,12 +1171,6 @@ export class BattleBase extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getAllFieldInfo(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "getAllFieldInfo()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     getFieldDefender(
       fieldID: BigNumberish,
       overrides?: CallOverrides
@@ -1180,6 +1198,18 @@ export class BattleBase extends Contract {
 
     "getFieldLeader(uint256)"(
       fieldID: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getRangeInfo(
+      startId: BigNumberish,
+      area: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getRangeInfo(uint256,uint256)"(
+      startId: BigNumberish,
+      area: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 

@@ -6,28 +6,28 @@ import React, { useEffect, useState } from "react";
 import Web3Modal, { IProviderOptions } from "web3modal";
 import { ArmyEnhancer } from "./typechain/ArmyEnhancer";
 import { ArmyEnhancer__factory } from "./typechain/factories/ArmyEnhancer__factory";
-import FloraArmyDeployment from "./deployments/rinkeby/FloraArmy.json";
-import { FloraArmy } from "./typechain/FloraArmy";
-import { FloraArmy__factory } from "./typechain/factories/FloraArmy__factory";
-import FaunaArmyDeployment from "./deployments/rinkeby/FaunaArmy.json";
-import { FaunaArmy } from "./typechain/FaunaArmy";
-import { FaunaArmy__factory } from "./typechain/factories/FaunaArmy__factory";
-import GreeterDeployment from "./deployments/rinkeby/Greeter.json";
-import { Greeter } from "./typechain/Greeter";
-import { Greeter__factory } from "./typechain/factories/Greeter__factory";
 import BattlefieldDeployment from "./deployments/rinkeby/Battlefield.json";
 import { Battlefield } from "./typechain/Battlefield";
 import { Battlefield__factory } from "./typechain/factories/Battlefield__factory";
+import FloraArmyDeployment from "./deployments/rinkeby/FloraArmy.json";
+import { FloraArmy } from "./typechain/FloraArmy";
+import { FloraArmy__factory } from "./typechain/factories/FloraArmy__factory";
+import GreeterDeployment from "./deployments/rinkeby/Greeter.json";
+import { Greeter } from "./typechain/Greeter";
+import { Greeter__factory } from "./typechain/factories/Greeter__factory";
+import FaunaArmyDeployment from "./deployments/rinkeby/FaunaArmy.json";
+import { FaunaArmy } from "./typechain/FaunaArmy";
+import { FaunaArmy__factory } from "./typechain/factories/FaunaArmy__factory";
+import { MockPublicResolver } from "./typechain/MockPublicResolver";
+import { MockPublicResolver__factory } from "./typechain/factories/MockPublicResolver__factory";
 import { MockEnsRegistry } from "./typechain/MockEnsRegistry";
 import { MockEnsRegistry__factory } from "./typechain/factories/MockEnsRegistry__factory";
+import { MockV3Aggregator } from "./typechain/MockV3Aggregator";
+import { MockV3Aggregator__factory } from "./typechain/factories/MockV3Aggregator__factory";
 import { ERC20 } from "./typechain/ERC20";
 import { ERC20__factory } from "./typechain/factories/ERC20__factory";
 import { ERC721 } from "./typechain/ERC721";
 import { ERC721__factory } from "./typechain/factories/ERC721__factory";
-import { MockV3Aggregator } from "./typechain/MockV3Aggregator";
-import { MockV3Aggregator__factory } from "./typechain/factories/MockV3Aggregator__factory";
-import { MockPublicResolver } from "./typechain/MockPublicResolver";
-import { MockPublicResolver__factory } from "./typechain/factories/MockPublicResolver__factory";
 
 const emptyContract = {
     instance: undefined,
@@ -48,15 +48,15 @@ const defaultSymfoniContext: SymfoniContextInterface = {
 };
 export const SymfoniContext = React.createContext<SymfoniContextInterface>(defaultSymfoniContext);
 export const ArmyEnhancerContext = React.createContext<SymfoniArmyEnhancer>(emptyContract);
-export const FloraArmyContext = React.createContext<SymfoniFloraArmy>(emptyContract);
-export const FaunaArmyContext = React.createContext<SymfoniFaunaArmy>(emptyContract);
-export const GreeterContext = React.createContext<SymfoniGreeter>(emptyContract);
 export const BattlefieldContext = React.createContext<SymfoniBattlefield>(emptyContract);
+export const FloraArmyContext = React.createContext<SymfoniFloraArmy>(emptyContract);
+export const GreeterContext = React.createContext<SymfoniGreeter>(emptyContract);
+export const FaunaArmyContext = React.createContext<SymfoniFaunaArmy>(emptyContract);
+export const MockPublicResolverContext = React.createContext<SymfoniMockPublicResolver>(emptyContract);
 export const MockEnsRegistryContext = React.createContext<SymfoniMockEnsRegistry>(emptyContract);
+export const MockV3AggregatorContext = React.createContext<SymfoniMockV3Aggregator>(emptyContract);
 export const ERC20Context = React.createContext<SymfoniERC20>(emptyContract);
 export const ERC721Context = React.createContext<SymfoniERC721>(emptyContract);
-export const MockV3AggregatorContext = React.createContext<SymfoniMockV3Aggregator>(emptyContract);
-export const MockPublicResolverContext = React.createContext<SymfoniMockPublicResolver>(emptyContract);
 
 export interface SymfoniContextInterface {
     init: (provider?: string) => void;
@@ -77,14 +77,14 @@ export interface SymfoniArmyEnhancer {
     factory?: ArmyEnhancer__factory;
 }
 
+export interface SymfoniBattlefield {
+    instance?: Battlefield;
+    factory?: Battlefield__factory;
+}
+
 export interface SymfoniFloraArmy {
     instance?: FloraArmy;
     factory?: FloraArmy__factory;
-}
-
-export interface SymfoniFaunaArmy {
-    instance?: FaunaArmy;
-    factory?: FaunaArmy__factory;
 }
 
 export interface SymfoniGreeter {
@@ -92,14 +92,24 @@ export interface SymfoniGreeter {
     factory?: Greeter__factory;
 }
 
-export interface SymfoniBattlefield {
-    instance?: Battlefield;
-    factory?: Battlefield__factory;
+export interface SymfoniFaunaArmy {
+    instance?: FaunaArmy;
+    factory?: FaunaArmy__factory;
+}
+
+export interface SymfoniMockPublicResolver {
+    instance?: MockPublicResolver;
+    factory?: MockPublicResolver__factory;
 }
 
 export interface SymfoniMockEnsRegistry {
     instance?: MockEnsRegistry;
     factory?: MockEnsRegistry__factory;
+}
+
+export interface SymfoniMockV3Aggregator {
+    instance?: MockV3Aggregator;
+    factory?: MockV3Aggregator__factory;
 }
 
 export interface SymfoniERC20 {
@@ -110,16 +120,6 @@ export interface SymfoniERC20 {
 export interface SymfoniERC721 {
     instance?: ERC721;
     factory?: ERC721__factory;
-}
-
-export interface SymfoniMockV3Aggregator {
-    instance?: MockV3Aggregator;
-    factory?: MockV3Aggregator__factory;
-}
-
-export interface SymfoniMockPublicResolver {
-    instance?: MockPublicResolver;
-    factory?: MockPublicResolver__factory;
 }
 
 export const Symfoni: React.FC<SymfoniProps> = ({
@@ -137,15 +137,15 @@ export const Symfoni: React.FC<SymfoniProps> = ({
     const [fallbackProvider] = useState<string | undefined>(undefined);
     const [providerPriority, setProviderPriority] = useState<string[]>(["web3modal", "hardhat"]);
     const [ArmyEnhancer, setArmyEnhancer] = useState<SymfoniArmyEnhancer>(emptyContract);
-    const [FloraArmy, setFloraArmy] = useState<SymfoniFloraArmy>(emptyContract);
-    const [FaunaArmy, setFaunaArmy] = useState<SymfoniFaunaArmy>(emptyContract);
-    const [Greeter, setGreeter] = useState<SymfoniGreeter>(emptyContract);
     const [Battlefield, setBattlefield] = useState<SymfoniBattlefield>(emptyContract);
+    const [FloraArmy, setFloraArmy] = useState<SymfoniFloraArmy>(emptyContract);
+    const [Greeter, setGreeter] = useState<SymfoniGreeter>(emptyContract);
+    const [FaunaArmy, setFaunaArmy] = useState<SymfoniFaunaArmy>(emptyContract);
+    const [MockPublicResolver, setMockPublicResolver] = useState<SymfoniMockPublicResolver>(emptyContract);
     const [MockEnsRegistry, setMockEnsRegistry] = useState<SymfoniMockEnsRegistry>(emptyContract);
+    const [MockV3Aggregator, setMockV3Aggregator] = useState<SymfoniMockV3Aggregator>(emptyContract);
     const [ERC20, setERC20] = useState<SymfoniERC20>(emptyContract);
     const [ERC721, setERC721] = useState<SymfoniERC721>(emptyContract);
-    const [MockV3Aggregator, setMockV3Aggregator] = useState<SymfoniMockV3Aggregator>(emptyContract);
-    const [MockPublicResolver, setMockPublicResolver] = useState<SymfoniMockPublicResolver>(emptyContract);
     useEffect(() => {
         if (messages.length > 0)
             console.debug(messages.pop())
@@ -226,10 +226,13 @@ export const Symfoni: React.FC<SymfoniProps> = ({
             }
             const finishWithContracts = (text: string) => {
                 setArmyEnhancer(getArmyEnhancer(_provider, _signer))
-                setFloraArmy(getFloraArmy(_provider, _signer))
-                setFaunaArmy(getFaunaArmy(_provider, _signer))
-                setGreeter(getGreeter(_provider, _signer))
                 setBattlefield(getBattlefield(_provider, _signer))
+                setFloraArmy(getFloraArmy(_provider, _signer))
+                setGreeter(getGreeter(_provider, _signer))
+                setFaunaArmy(getFaunaArmy(_provider, _signer))
+                setMockPublicResolver(getMockPublicResolver(_provider, _signer))
+                setMockEnsRegistry(getMockEnsRegistry(_provider, _signer))
+                setMockV3Aggregator(getMockV3Aggregator(_provider, _signer))
                 setERC20(getERC20(_provider, _signer))
                 setERC721(getERC721(_provider, _signer))
                 finish(text)
@@ -269,6 +272,17 @@ export const Symfoni: React.FC<SymfoniProps> = ({
         return contract
     }
         ;
+    const getBattlefield = (_provider: providers.Provider, _signer?: Signer) => {
+
+        const contractAddress = BattlefieldDeployment.receipt.contractAddress
+        const instance = _signer ? Battlefield__factory.connect(contractAddress, _signer) : Battlefield__factory.connect(contractAddress, _provider)
+        const contract: SymfoniBattlefield = {
+            instance: instance,
+            factory: _signer ? new Battlefield__factory(_signer) : undefined,
+        }
+        return contract
+    }
+        ;
     const getFloraArmy = (_provider: providers.Provider, _signer?: Signer) => {
 
         const contractAddress = FloraArmyDeployment.receipt.contractAddress
@@ -276,17 +290,6 @@ export const Symfoni: React.FC<SymfoniProps> = ({
         const contract: SymfoniFloraArmy = {
             instance: instance,
             factory: _signer ? new FloraArmy__factory(_signer) : undefined,
-        }
-        return contract
-    }
-        ;
-    const getFaunaArmy = (_provider: providers.Provider, _signer?: Signer) => {
-
-        const contractAddress = FaunaArmyDeployment.receipt.contractAddress
-        const instance = _signer ? FaunaArmy__factory.connect(contractAddress, _signer) : FaunaArmy__factory.connect(contractAddress, _provider)
-        const contract: SymfoniFaunaArmy = {
-            instance: instance,
-            factory: _signer ? new FaunaArmy__factory(_signer) : undefined,
         }
         return contract
     }
@@ -302,13 +305,40 @@ export const Symfoni: React.FC<SymfoniProps> = ({
         return contract
     }
         ;
-    const getBattlefield = (_provider: providers.Provider, _signer?: Signer) => {
+    const getFaunaArmy = (_provider: providers.Provider, _signer?: Signer) => {
 
-        const contractAddress = BattlefieldDeployment.receipt.contractAddress
-        const instance = _signer ? Battlefield__factory.connect(contractAddress, _signer) : Battlefield__factory.connect(contractAddress, _provider)
-        const contract: SymfoniBattlefield = {
+        const contractAddress = FaunaArmyDeployment.receipt.contractAddress
+        const instance = _signer ? FaunaArmy__factory.connect(contractAddress, _signer) : FaunaArmy__factory.connect(contractAddress, _provider)
+        const contract: SymfoniFaunaArmy = {
             instance: instance,
-            factory: _signer ? new Battlefield__factory(_signer) : undefined,
+            factory: _signer ? new FaunaArmy__factory(_signer) : undefined,
+        }
+        return contract
+    }
+        ;
+    const getMockPublicResolver = (_provider: providers.Provider, _signer?: Signer) => {
+        let instance = _signer ? MockPublicResolver__factory.connect(ethers.constants.AddressZero, _signer) : MockPublicResolver__factory.connect(ethers.constants.AddressZero, _provider)
+        const contract: SymfoniMockPublicResolver = {
+            instance: instance,
+            factory: _signer ? new MockPublicResolver__factory(_signer) : undefined,
+        }
+        return contract
+    }
+        ;
+    const getMockEnsRegistry = (_provider: providers.Provider, _signer?: Signer) => {
+        let instance = _signer ? MockEnsRegistry__factory.connect(ethers.constants.AddressZero, _signer) : MockEnsRegistry__factory.connect(ethers.constants.AddressZero, _provider)
+        const contract: SymfoniMockEnsRegistry = {
+            instance: instance,
+            factory: _signer ? new MockEnsRegistry__factory(_signer) : undefined,
+        }
+        return contract
+    }
+        ;
+    const getMockV3Aggregator = (_provider: providers.Provider, _signer?: Signer) => {
+        let instance = _signer ? MockV3Aggregator__factory.connect(ethers.constants.AddressZero, _signer) : MockV3Aggregator__factory.connect(ethers.constants.AddressZero, _provider)
+        const contract: SymfoniMockV3Aggregator = {
+            instance: instance,
+            factory: _signer ? new MockV3Aggregator__factory(_signer) : undefined,
         }
         return contract
     }
@@ -346,15 +376,15 @@ export const Symfoni: React.FC<SymfoniProps> = ({
                 <SignerContext.Provider value={[signer, setSigner]}>
                     <CurrentAddressContext.Provider value={[currentAddress, setCurrentAddress]}>
                         <ArmyEnhancerContext.Provider value={ArmyEnhancer}>
-                            <FloraArmyContext.Provider value={FloraArmy}>
-                                <FaunaArmyContext.Provider value={FaunaArmy}>
+                            <BattlefieldContext.Provider value={Battlefield}>
+                                <FloraArmyContext.Provider value={FloraArmy}>
                                     <GreeterContext.Provider value={Greeter}>
-                                        <BattlefieldContext.Provider value={Battlefield}>
-                                            <MockEnsRegistryContext.Provider value={MockEnsRegistry}>
-                                                <ERC20Context.Provider value={ERC20}>
-                                                    <ERC721Context.Provider value={ERC721}>
-                                                        <MockV3AggregatorContext.Provider value={MockV3Aggregator}>
-                                                            <MockPublicResolverContext.Provider value={MockPublicResolver}>
+                                        <FaunaArmyContext.Provider value={FaunaArmy}>
+                                            <MockPublicResolverContext.Provider value={MockPublicResolver}>
+                                                <MockEnsRegistryContext.Provider value={MockEnsRegistry}>
+                                                    <MockV3AggregatorContext.Provider value={MockV3Aggregator}>
+                                                        <ERC20Context.Provider value={ERC20}>
+                                                            <ERC721Context.Provider value={ERC721}>
                                                                 {showLoading && loading ?
                                                                     props.loadingComponent
                                                                         ? props.loadingComponent
@@ -365,15 +395,15 @@ export const Symfoni: React.FC<SymfoniProps> = ({
                                                                         </div>
                                                                     : props.children
                                                                 }
-                                                            </MockPublicResolverContext.Provider >
-                                                        </MockV3AggregatorContext.Provider >
-                                                    </ERC721Context.Provider >
-                                                </ERC20Context.Provider >
-                                            </MockEnsRegistryContext.Provider >
-                                        </BattlefieldContext.Provider >
+                                                            </ERC721Context.Provider >
+                                                        </ERC20Context.Provider >
+                                                    </MockV3AggregatorContext.Provider >
+                                                </MockEnsRegistryContext.Provider >
+                                            </MockPublicResolverContext.Provider >
+                                        </FaunaArmyContext.Provider >
                                     </GreeterContext.Provider >
-                                </FaunaArmyContext.Provider >
-                            </FloraArmyContext.Provider >
+                                </FloraArmyContext.Provider >
+                            </BattlefieldContext.Provider >
                         </ArmyEnhancerContext.Provider >
                     </CurrentAddressContext.Provider>
                 </SignerContext.Provider>
